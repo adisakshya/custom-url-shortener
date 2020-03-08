@@ -23,6 +23,25 @@ const getItemByID = async (id) => {
 };
 
 /**
+ * GET item by code
+ * @param {String} code 
+ */
+const getItemByCode = async (URLCode) => {
+  
+  // GET item
+  const item = await shortenURL.findOne({
+    URLCode: URLCode
+  });
+  
+  // RETURN item
+  if(item) {
+    return item;
+  } else {
+    return false;
+  }
+};
+
+/**
  * GET item by original URL
  * @param {String} originalURL 
  */
@@ -100,6 +119,7 @@ const getItems = async () => {
 };
 
 exports.getItemByID = getItemByID;
+exports.getItemByCode = getItemByCode;
 exports.getItemByOriginalURL = getItemByOriginalURL;
 exports.insertNewItem = insertNewItem;
 exports.deleteItemByID = deleteItemByID;
