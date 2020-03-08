@@ -1,0 +1,337 @@
+{
+	"info": {
+		"_postman_id": "ab725918-168c-4670-8c82-b9fd040baa61",
+		"name": "Custom URL Shortner",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:3000/api/url",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/url?",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"url"
+					],
+					"query": [
+						{
+							"key": "urlCode",
+							"value": "adisakshya",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Bad GET Request"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/url",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/url?urlCode=adisakshya",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"url"
+					],
+					"query": [
+						{
+							"key": "urlCode",
+							"value": "adisakshya"
+						}
+					]
+				},
+				"description": "404: No such URL Code found"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/url",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/url/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"url",
+						"all"
+					]
+				},
+				"description": "200: GET all items"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/url",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "originalURL",
+							"value": "https://project-expo.herokuapp.com/",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "baseURL",
+							"value": "http://localhost",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/url",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"url"
+					]
+				},
+				"description": "400: Original URL Not given"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/url",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "originalURL",
+							"value": "https://project-expo.herokuapp.com/",
+							"type": "text"
+						},
+						{
+							"key": "baseURL",
+							"value": "http://localhost",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/url",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"url"
+					]
+				},
+				"description": "400: Base URL not given"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/url",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "originalURL",
+							"value": "htt//project-expo.herokuapp.com/",
+							"type": "text"
+						},
+						{
+							"key": "baseURL",
+							"value": "http://localhost",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/url",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"url"
+					]
+				},
+				"description": "400: Invalid Original URL"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/url",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "originalURL",
+							"value": "https://project-expo.herokuapp.com/",
+							"type": "text"
+						},
+						{
+							"key": "baseURL",
+							"value": "localhost",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/url",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"url"
+					]
+				},
+				"description": "400: Invalid Base URL"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/url",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "urlCode",
+							"value": "0i98fKC",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/url",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"url"
+					]
+				},
+				"description": "400: Item not found"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/url",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "id",
+							"value": "5e64c0fae050644758013840",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/url",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"url"
+					]
+				},
+				"description": "200: Delete item by ID"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
