@@ -1,6 +1,6 @@
 # Custom URL Shortner
 
-[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/adisakshya/custom-url-shortner/blob/master/LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/adisakshya/custom-url-shortner/pulls) [![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)]()
+[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/adisakshya/custom-url-shortner/blob/master/LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/adisakshya/custom-url-shortner/pulls) [![Under Development](https://img.shields.io/badge/Under_Development-yes-brightgreen.svg)](https://github.com/adisakshya/custom-url-shortner/pulls) [![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)]()
 
 A custom URL shortner service built using ExpressJS, MongoDB & Nginx.
 
