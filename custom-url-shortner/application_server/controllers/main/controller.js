@@ -23,10 +23,7 @@ const redirectToOriginalURL = async (req, res) => {
   // RETURN response
   if(item) {
     return res
-      .status(200)
-      .json({
-        "message": item
-      });
+      .redirect(item.originalURL);
   } else {
     return res
       .status(404)
