@@ -1,18 +1,21 @@
-var express = require('express');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const express = require('express');
+const logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-
-var app = express();
+const app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 
-app.use('/', indexRouter);
+/**
+ * Index Router
+ */
+const indexRouter = require('./routes/index');
+app.use('/api/url', indexRouter);
 
+/**
+ * Establish connection with database
+ */
 require('./db/db');
 
 module.exports = app;
