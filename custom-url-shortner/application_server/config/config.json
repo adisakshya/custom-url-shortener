@@ -1,3 +1,3 @@
 {
-    "mongoURI": "mongodb+srv://<username>:<password>@url-shortner-je6q2.mongodb.net/test?retryWrites=true&w=majority"
+    "mongoURI": "mongodb+srv://adisakshya:adisakshya@url-shortner-je6q2.mongodb.net/test?retryWrites=true&w=majority"
 }
