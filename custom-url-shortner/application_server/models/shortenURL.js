@@ -16,8 +16,7 @@ const shortenURLSchema = new schema({
   },
   createdAt: {
     type: Date,
-    default: Date.now,
-    required: true
+    default: Date.now
   },
   updatedAt: {
     type: Date,
