@@ -13,4 +13,6 @@ app.use(cookieParser());
 
 app.use('/', indexRouter);
 
+require('./db/db');
+
 module.exports = app;
