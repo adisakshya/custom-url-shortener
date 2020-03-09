@@ -259,7 +259,7 @@
 		{
 			"name": "http://localhost:3000/api/url",
 			"request": {
-				"method": "DELETE",
+				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
@@ -272,8 +272,18 @@
 					"mode": "urlencoded",
 					"urlencoded": [
 						{
-							"key": "urlCode",
-							"value": "0i98fKC",
+							"key": "originalURL",
+							"value": "https://www.google.co.in",
+							"type": "text"
+						},
+						{
+							"key": "URLCode",
+							"value": "google",
+							"type": "text"
+						},
+						{
+							"key": "baseURL",
+							"value": "http://localhost",
 							"type": "text"
 						}
 					]
@@ -290,7 +300,109 @@
 						"url"
 					]
 				},
-				"description": "400: Item not found"
+				"description": "200: Insert new item"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/url",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "originalURL",
+							"value": "https://www.google.co.in",
+							"type": "text"
+						},
+						{
+							"key": "URLCode",
+							"value": "googlel",
+							"type": "text"
+						},
+						{
+							"key": "baseURL",
+							"value": "http://localhost",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://192.168.99.100:3000/api/url",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"99",
+						"100"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"url"
+					]
+				},
+				"description": "200: Duplicate Original URL"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/url",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "originalURL",
+							"value": "https://www.google.co.in",
+							"type": "text"
+						},
+						{
+							"key": "URLCode",
+							"value": "google",
+							"type": "text"
+						},
+						{
+							"key": "baseURL",
+							"value": "http://localhost",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://192.168.99.100:3000/api/url",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"99",
+						"100"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"url"
+					]
+				},
+				"description": "200: Duplicate URL Code"
 			},
 			"response": []
 		},
