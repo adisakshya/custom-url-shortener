@@ -25,7 +25,7 @@ router.route('/')
       })
       .then(response => {
         res.render('index', { 
-          title: 'Result | Custom URL Shortener', 
+          title: 'Custom URL Shortener', 
           duplicate: response.data.duplicate, 
           shortURL: response.data.message.shortURL,
           error: null
