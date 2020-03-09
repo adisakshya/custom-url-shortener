@@ -16,3 +16,10 @@ services:
         ports:
           - '3000:3000'
         restart: always
+    
+    web_server:
+        container_name: web_server
+        build: ./web_server
+        ports:
+          - '5000:5000'
+        restart: always
