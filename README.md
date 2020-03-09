@@ -6,6 +6,14 @@ A custom URL shortner service built using ExpressJS, MongoDB & Nginx.
 
 ### Operating Instructions
 
+#### Prerequisites
+
+- Make sure you have
+  - MongoDB Atlas cluster up and running with a user having database access.
+  - Docker or NodeJS installed
+
+#### Fork
+
 - Fork this repository
 	- "Forking" adds a copy of [adisakshya/custom-url-shortner](https://github.com/adisakshya/custom-url-shortner/) repository to your GitHub account as `https://github.com/YourGitHubUserName/custom-url-shortner`
 - Download or clone your forked repository
