@@ -53,10 +53,10 @@ const getByID = async (req, res) => {
 const createNewItem = async (req, res) => {
 
   // GET originalURL & baseURL
-  const { originalURL, baseURL } = req.body;
+  const { originalURL, baseURL, URLCode } = req.body;
 
   // CHECK if all parameters are given
-  if(!(originalURL && baseURL)) {
+  if(!(originalURL && baseURL && URLCode)) {
     return res
       .status(400)
       .json({
@@ -80,8 +80,17 @@ const createNewItem = async (req, res) => {
       });
   }
 
-  // GENERATE URL code
-  const urlCode = shortId.generate();
+  // Check if URL code already exists
+  const url = await dbController.getItemByCode(URLCode);
+  if(url) {
+    // return response
+    return res
+      .status(200)
+      .json({
+        'message': url,
+        'duplicate': 'URL Code'
+      });
+  }
 
   // Check if item with this original URL already exists
   const item = await dbController.getItemByOriginalURL(originalURL);
@@ -90,14 +99,15 @@ const createNewItem = async (req, res) => {
     return res
       .status(200)
       .json({
-        'message': item
+        'message': item,
+        'duplicate': 'Original URL'
       });
   } else {
     // create a short URL
-    let shortURL = baseURL + "/" + urlCode;
+    let shortURL = baseURL + "/" + URLCode;
     
     // insert into db
-    const item = await dbController.insertNewItem(originalURL, baseURL, shortURL, urlCode);
+    const item = await dbController.insertNewItem(originalURL, baseURL, shortURL, URLCode);
     
     // return response
     if(item) {
