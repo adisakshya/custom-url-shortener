@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
-const validURL = require('valid-url');
-const shortId = require('shortid');
+/**
+ * Main Controller
+ */
 
 /**
  * Database Controller
