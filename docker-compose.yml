@@ -3,7 +3,7 @@ version: '3.7'
 services:
     nginx:
         container_name: nginx
-        build: ./nginx
+        build: ./custom-url-shortner/nginx
         ports:
             - '80:80'
         restart: always
@@ -12,14 +12,14 @@ services:
         container_name: shortner 
         depends_on: 
             - nginx
-        build: ./application_server
+        build: ./custom-url-shortner/application_server
         ports:
           - '3000:3000'
         restart: always
     
     web_server:
         container_name: web_server
-        build: ./web_server
+        build: ./custom-url-shortner/web_server
         ports:
           - '5000:5000'
         restart: always
