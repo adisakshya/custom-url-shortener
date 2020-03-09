@@ -20,12 +20,16 @@ A custom URL shortner service built using ExpressJS, MongoDB & Nginx.
 	- In application-server-directory ```./custom-url-shortner/application_server```, run the following command
 		- ```npm install```
 - You are all set to get started with custom-url-shortner, now run the following command to start custom-url-shortner
-	- ```npm start --host 0.0.0.0```
+	- ```npm start --host 0.0.0.0``` or just simple ```npm start```
 - Now you have successfully setup custom-url-shortner application shortner,
 	- Please find the postman-collection for application server at ```./custom-url-shortner/application_server/postman_collection```.
   - It describe all routes that define the operation the application server.
+- Activate nginx by using the conf file at ```./custom-url-shortner/nginx```.
+- To start the webserver run the following command from ```./custom-url-shortner/web_server```
+  - ```npm start --host 0.0.0.0``` or just simple ```npm start```
+- Now to access the webserver visit ```http://<your-ip-address>:5000```
 - After creating a new shortend-URL you can access it on following route
-  - ```http://<your-ip-address>:3000/<UNIQUE_URL_CODE>```
+  - ```http://<your-ip-address>/<UNIQUE_URL_CODE>```
   - This will take you to the original URL.
 
 #### Using Docker
@@ -38,9 +42,10 @@ A custom URL shortner service built using ExpressJS, MongoDB & Nginx.
 - Now you have successfully setup custom-url-shortner,
 	- Please find the postman-collection for application server at ```./custom-url-shortner/application_server/postman_collection```.
   - It describe all routes that define the operation the application server.
-- After creating a new shortend-URL you can access it on following route
-  - ```http://<your-docker-machine-ip>/<UNIQUE_URL_CODE>```
-  - This will take you to the original URL.
+- To access the webserver visit
+  - ```http://<docker-machine-ip>:5000```
+- To access shortened URL visit
+  - ```http://<docker-machine-ip>:/<UNIQUE_URL_CODE>```
 
 ## Suggest Features
 
