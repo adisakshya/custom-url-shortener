@@ -141,6 +141,27 @@ const deleteItemByID = async (id) => {
 };
 
 /**
+ * DELETE all items
+ */
+const deleteAllItems = async () => {
+    
+  try {
+    // Get item by ID
+    const flag = await shortenURL.deleteMany({});
+
+    // Delete and return item
+    if(flag) {
+      return flag;
+    } else {
+      return false;
+    }
+  } catch(err) {
+    return false;
+  }
+  
+};
+
+/**
  * GET all item 
  */
 const getItems = async () => {
@@ -167,4 +188,5 @@ exports.getItemByCode = getItemByCode;
 exports.getItemByOriginalURL = getItemByOriginalURL;
 exports.insertNewItem = insertNewItem;
 exports.deleteItemByID = deleteItemByID;
+exports.deleteAllItems = deleteAllItems;
 exports.getItems = getItems;

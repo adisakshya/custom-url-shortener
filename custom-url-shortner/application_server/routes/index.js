@@ -32,7 +32,12 @@ router.route('/all')
   /**
    * GET all items
    */
-  .get(applicationController.getAllItems);
+  .get(applicationController.getAllItems)
+
+  /**
+   * DELETE all items
+   */
+  .delete(applicationController.deleteAll);
 
 
 /**

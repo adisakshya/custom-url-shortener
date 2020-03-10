@@ -315,3 +315,47 @@ describe('Failing to delete item because invalid parameter supplied', () => {
     });
 
 });
+
+describe('Delete all items', () => {
+
+    it('should delete all item', async () => {
+        const res1 = await request(app)
+            .post('/api/url')
+            .send({
+                "originalURL": "https://example.com/acoustics.aspx?brass=act&afterthought=baby",
+                "baseURL": "http://localhost",
+                "URLCode": "someRandomURLCode"
+            });
+        expect(res1.statusCode).toEqual(200);
+        expect(res1.body.message.originalURL).toEqual("https://example.com/acoustics.aspx?brass=act&afterthought=baby");
+        expect(res1.body.message.URLCode).toEqual("someRandomURLCode");
+        const res2 = await request(app)
+            .post('/api/url')
+            .send({
+                "originalURL": "https://example2.com/acoustics.aspx?brass=act&afterthought=baby",
+                "baseURL": "http://localhost",
+                "URLCode": "someOtherRandomURLCode"
+            });
+        expect(res2.statusCode).toEqual(200);
+        expect(res2.body.message.originalURL).toEqual("https://example2.com/acoustics.aspx?brass=act&afterthought=baby");
+        expect(res2.body.message.URLCode).toEqual("someOtherRandomURLCode");
+        const res = await request(app)
+            .delete('/api/url/all');
+        expect(res.statusCode).toEqual(200);
+        expect(res.body.message.deletedCount).toEqual(2);
+        expect(res.body.message.ok).toEqual(1);
+    });
+
+});
+
+describe('Delete request on empty collection', () => {
+    
+    it('should return no deleted items', async () => {
+        const res = await request(app)
+            .delete('/api/url/all');
+        expect(res.statusCode).toEqual(200);
+        expect(res.body.message.deletedCount).toEqual(0);
+        expect(res.body.message.ok).toEqual(1);
+    });
+    
+});

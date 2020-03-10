@@ -194,6 +194,32 @@ const deleteByID = async (req, res) => {
 };
 
 /**
+ * DELETE all items
+ * @param {object} req
+ * @param {object} res
+ */
+const deleteAll = async (req, res) => {
+  
+  // GET item
+  const resp = await dbController.deleteAllItems();
+  
+  // RETURN response
+  if(resp) {
+    return res
+      .status(200)
+      .json({
+        "message": resp
+      });
+  } else {
+    return res
+      .status(404)
+      .json({
+        "message": 'No item found'
+      });
+  }
+};
+
+/**
  * 
  * @param {object} req
  * @param {object} res
@@ -223,4 +249,5 @@ exports.checkDBConnection = checkDBConnection;
 exports.getByID = getByID;
 exports.createNewItem = createNewItem;
 exports.deleteByID = deleteByID;
+exports.deleteAll = deleteAll;
 exports.getAllItems = getAllItems;
