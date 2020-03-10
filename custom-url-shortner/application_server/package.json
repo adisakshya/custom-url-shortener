@@ -4,7 +4,7 @@
   "description": "Custom url-shortner application server.",
   "scripts": {
     "start": "node ./bin/www",
-    "test": "cross-env NODE_ENV=test jest --testTimeout=10000"
+    "test": "jest --testTimeout=10000"
   },
   "repository": {
     "type": "git",
