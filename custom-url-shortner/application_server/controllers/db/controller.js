@@ -1,5 +1,6 @@
 /**
  * Database Controller
+ * Interaction with database
  */
 
 /**

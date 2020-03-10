@@ -1,11 +1,12 @@
 /**
  * Application Controller
+ * Management of URLs
  */
 
 const validURL = require('valid-url');
 
 /**
- * Database Controller
+ * Require Database Controller
  */
 const dbController = require('../db/controller');
 
@@ -54,7 +55,7 @@ const getByID = async (req, res) => {
  */
 const createNewItem = async (req, res) => {
 
-  // GET originalURL & baseURL
+  // GET originalURL, baseURL and URLCode
   const { originalURL, baseURL, URLCode } = req.body;
 
   // CHECK if all parameters are given
@@ -136,7 +137,7 @@ const createNewItem = async (req, res) => {
  */
 const deleteByID = async (req, res) => {
   
-  // GET params
+  // GET ID
   const { id } = req.body;
 
   // CHECK if all parameters are given
