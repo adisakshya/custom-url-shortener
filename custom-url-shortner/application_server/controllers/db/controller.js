@@ -26,14 +26,18 @@ const checkDB = async() => {
 const getItemByID = async (id) => {
   
   // GET item
-  const item = await shortenURL.findById(id);
-  
-  // RETURN item
-  if(item) {
-    return item;
-  } else {
+  try {
+    const item = await shortenURL.findById(id);
+    // RETURN item
+    if(item) {
+      return item;
+    } else {
+      return false;
+    }
+  } catch(err) {
     return false;
   }
+  
 };
 
 /**
