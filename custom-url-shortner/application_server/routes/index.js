@@ -34,4 +34,14 @@ router.route('/all')
    */
   .get(applicationController.getAllItems);
 
+
+/**
+ * Database Test Route
+ */
+router.route('/db/connection/test')
+  /**
+   * GET database connection status
+   */
+  .get(applicationController.checkDBConnection);
+
 module.exports = router;

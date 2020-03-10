@@ -11,6 +11,31 @@ const validURL = require('valid-url');
 const dbController = require('../db/controller');
 
 /**
+ * Check if connection with database is alive
+ * @param {object} req 
+ * @param {object} res 
+ */
+const checkDBConnection = async (req, res) => {
+
+  // CHECK if connection is established
+  if(await dbController.checkDB() !== 1) {
+    // if not then return Status 504
+    return res
+      .status(504)
+      .json({
+        "message": "Failed to establish connection with database"
+      });
+  } else {
+    // if yes then return Status 200 OK
+    return res
+      .status(200)
+      .json({
+        "message": "Connection with database is successfully established"
+      });
+  }
+}
+
+/**
  * GET item by ID
  * @param {object} req
  * @param {object} res
@@ -194,6 +219,7 @@ const getAllItems = async (req, res) => {
   }
 };
 
+exports.checkDBConnection = checkDBConnection;
 exports.getByID = getByID;
 exports.createNewItem = createNewItem;
 exports.deleteByID = deleteByID;

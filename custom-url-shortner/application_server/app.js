@@ -22,6 +22,6 @@ app.use('/', mainRouter);
 /**
  * Establish connection with database
  */
-require('./db/db');
+require('./db/db').connect();
 
 module.exports = app;

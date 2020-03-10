@@ -9,6 +9,17 @@
 const shortenURL = require('../../models/shortenURL');
 
 /**
+ * CHeck if connection with database if established
+ */
+const checkDB = async() => {
+  // Load database connection test
+  const dbTest = require('../../db/db').connectionTest;
+
+  // RETURN connection test result
+  return dbTest();
+};
+
+/**
  * GET item by ID
  * @param {String} urlCode 
  */
@@ -121,6 +132,7 @@ const getItems = async () => {
   }
 };
 
+exports.checkDB = checkDB;
 exports.getItemByID = getItemByID;
 exports.getItemByCode = getItemByCode;
 exports.getItemByOriginalURL = getItemByOriginalURL;
