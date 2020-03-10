@@ -7,6 +7,13 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+
+/**
+ * Ping Router
+ */
+const pingRounter = require('./routes/ping');
+app.use('/ping', pingRounter);
+
 /**
  * Index Router
  */
