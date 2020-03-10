@@ -247,3 +247,45 @@ describe('Get item information', () => {
     });
 
 });
+
+describe('Get all item information', () => {
+    
+    it('should get information about 2 items', async () => {
+        const res1 = await request(app)
+            .post('/api/url')
+            .send({
+                "originalURL": "https://example.com/acoustics.aspx?brass=act&afterthought=baby",
+                "baseURL": "http://localhost",
+                "URLCode": "someRandomURLCode"
+            });
+        expect(res1.statusCode).toEqual(200);
+        expect(res1.body.message.originalURL).toEqual("https://example.com/acoustics.aspx?brass=act&afterthought=baby");
+        expect(res1.body.message.URLCode).toEqual("someRandomURLCode");
+        const res2 = await request(app)
+            .post('/api/url')
+            .send({
+                "originalURL": "https://example2.com/acoustics.aspx?brass=act&afterthought=baby",
+                "baseURL": "http://localhost",
+                "URLCode": "someOtherRandomURLCode"
+            });
+        expect(res2.statusCode).toEqual(200);
+        expect(res2.body.message.originalURL).toEqual("https://example2.com/acoustics.aspx?brass=act&afterthought=baby");
+        expect(res2.body.message.URLCode).toEqual("someOtherRandomURLCode");
+        const res = await request(app)
+            .get('/api/url/all');
+        expect(res.statusCode).toEqual(200);
+        expect(res.body.message.length).toEqual(2);
+    });
+
+});
+
+describe('Get request on empty collection', () => {
+    
+    it('should return no item found', async () => {
+        const res = await request(app)
+            .get('/api/url/all');
+        expect(res.statusCode).toEqual(200);
+        expect(res.body.message).toEqual('No Item found');
+    });
+    
+});
