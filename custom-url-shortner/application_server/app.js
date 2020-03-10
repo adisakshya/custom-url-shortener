@@ -26,9 +26,4 @@ app.use('/api/url', indexRouter);
 const mainRouter = require('./routes/main');
 app.use('/', mainRouter);
 
-/**
- * Establish connection with database
- */
-require('./db/db').connect();
-
 module.exports = app;
