@@ -46,17 +46,22 @@ const getItemByID = async (id) => {
  */
 const getItemByCode = async (URLCode) => {
   
-  // GET item
-  const item = await shortenURL.findOne({
-    URLCode: URLCode
-  });
-  
-  // RETURN item
-  if(item) {
-    return item;
-  } else {
+  try {
+    // GET item
+    const item = await shortenURL.findOne({
+      URLCode: URLCode
+    });
+    
+    // RETURN item
+    if(item) {
+      return item;
+    } else {
+      return false;
+    }
+  } catch(err) {
     return false;
   }
+
 };
 
 /**
@@ -65,17 +70,22 @@ const getItemByCode = async (URLCode) => {
  */
 const getItemByOriginalURL = async (originalURL) => {
   
-  // GET item
-  const item = await shortenURL.findOne({
-    originalURL: originalURL
-  });
+  try {
+    // GET item
+    const item = await shortenURL.findOne({
+      originalURL: originalURL
+    });
 
-  // RETURN item
-  if(item) {
-    return item;
-  } else {
-    return false;
+    // RETURN item
+    if(item) {
+      return item;
+    } else {
+      return false;
+    }
+  } catch(err) {
+    return false
   }
+  
 };
 
 /**
@@ -87,6 +97,7 @@ const getItemByOriginalURL = async (originalURL) => {
  */
 const insertNewItem = async (originalURL, baseURL, shortURL, URLCode) => {
     
+  try {
     // Create new item
     const item = new shortenURL({
         originalURL,
@@ -100,6 +111,10 @@ const insertNewItem = async (originalURL, baseURL, shortURL, URLCode) => {
 
     // Return item
     return item;
+  } catch(err) {
+    return false;
+  }
+    
 };
 
 /**
@@ -108,16 +123,21 @@ const insertNewItem = async (originalURL, baseURL, shortURL, URLCode) => {
  */
 const deleteItemByID = async (id) => {
     
-  // Get item by ID
-  const item = await shortenURL.findById(id);
+  try {
+    // Get item by ID
+    const item = await shortenURL.findById(id);
 
-  // Delete and return item
-  if(item) {
-    let removed_item = await item.remove();
-    return removed_item;
-  } else {
+    // Delete and return item
+    if(item) {
+      let removed_item = await item.remove();
+      return removed_item;
+    } else {
+      return false;
+    }
+  } catch(err) {
     return false;
   }
+  
 };
 
 /**
@@ -125,15 +145,20 @@ const deleteItemByID = async (id) => {
  */
 const getItems = async () => {
     
-  // Get all items
-  const items = await shortenURL.find();
+  try {
+    // Get all items
+    const items = await shortenURL.find();
 
-  // Return items
-  if(items) {
-    return items;
-  } else {
+    // Return items
+    if(items) {
+      return items;
+    } else {
+      return false;
+    }
+  } catch(err) {
     return false;
   }
+  
 };
 
 exports.checkDB = checkDB;
