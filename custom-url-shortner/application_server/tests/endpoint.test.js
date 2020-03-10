@@ -194,3 +194,56 @@ describe('Create a new item', () => {
     });
 
 });
+
+describe('Failing to get item information because insufficient parameter supplied', () => {
+
+    it('should not get information due to insufficient parameter: ID', async () => {
+        const res = await request(app)
+            .get('/api/url')
+            .query({});
+        expect(res.statusCode).toEqual(400);
+        expect(res.body.message).toEqual("Insufficient parameters");
+    });
+
+});
+
+describe('Failing to get item information because invalid parameter supplied', () => {
+
+    it('should not get information due to invalid parameter: ID', async () => {
+        const res = await request(app)
+            .get('/api/url')
+            .query({
+                "id": "thisIsAnInvalidId"
+            });
+        expect(res.statusCode).toEqual(404);
+        expect(res.body.message).toEqual("No such URL ID found");
+    });
+
+});
+
+describe('Get item information', () => {
+
+    it('should get information about an item', async () => {
+        const res1 = await request(app)
+            .post('/api/url')
+            .send({
+                "originalURL": "https://example.com/acoustics.aspx?brass=act&afterthought=baby",
+                "baseURL": "http://localhost",
+                "URLCode": "someRandomURLCode"
+            });
+        expect(res1.statusCode).toEqual(200);
+        expect(res1.body.message.originalURL).toEqual("https://example.com/acoustics.aspx?brass=act&afterthought=baby");
+        expect(res1.body.message.URLCode).toEqual("someRandomURLCode");
+        const res = await request(app)
+            .get('/api/url')
+            .query({
+                "id": res1.body.message._id
+            });
+        expect(res.statusCode).toEqual(200);
+        expect(res.body.message._id).toEqual(res1.body.message._id);
+        expect(res.body.message.originalURL).toEqual("https://example.com/acoustics.aspx?brass=act&afterthought=baby",);
+        expect(res.body.message.shortURL).toEqual("http://localhost/someRandomURLCode");
+        expect(res.body.message.URLCode).toEqual("someRandomURLCode");
+    });
+
+});
