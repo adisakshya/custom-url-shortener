@@ -289,3 +289,29 @@ describe('Get request on empty collection', () => {
     });
     
 });
+
+describe('Failing to delete item because insufficient parameter supplied', () => {
+
+    it('should not delete item due to insufficient parameter: ID', async () => {
+        const res = await request(app)
+            .delete('/api/url')
+            .send({});
+        expect(res.statusCode).toEqual(400);
+        expect(res.body.message).toEqual("Insufficient parameters");
+    });
+
+});
+
+describe('Failing to delete item because invalid parameter supplied', () => {
+
+    it('should return item not found', async () => {
+        const res = await request(app)
+            .delete('/api/url')
+            .send({
+                "id": "thisIsAnInvalidId"
+            });
+        expect(res.statusCode).toEqual(404);
+        expect(res.body.message).toEqual("Item not found");
+    });
+
+});

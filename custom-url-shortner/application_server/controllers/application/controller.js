@@ -186,7 +186,7 @@ const deleteByID = async (req, res) => {
       });
   } else {
     return res
-      .status(400)
+      .status(404)
       .json({
         "message": 'Item not found'
       });
