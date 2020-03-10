@@ -16,9 +16,11 @@ router.route('/')
     });
   })
   .post(async (req, res, next) => {
+    let host = req.get('host');
+    host = host.split(':')[0];
     const { originalURL, baseURL, URLCode } = req.body;
     await axios
-      .post('http://192.168.99.100:3000/api/url', {
+      .post('http://' + host + ':3000/api/url', {
         'originalURL': originalURL,
         'baseURL': baseURL,
         'URLCode': URLCode
