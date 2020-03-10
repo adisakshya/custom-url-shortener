@@ -29,6 +29,14 @@ module.exports = setupDB = () => {
 
     });
 
+    // Clear test collection
+    afterEach(async() => {
+
+        // Empty the test collection
+        await mongoose.connection.collections['testshortenurlschemas'].deleteMany({});
+
+    });
+
     // Disconnect Mongoose
     afterAll(async () => {
 
