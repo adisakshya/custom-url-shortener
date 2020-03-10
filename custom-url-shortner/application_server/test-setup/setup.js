@@ -32,9 +32,14 @@ module.exports = setupDB = () => {
     // Disconnect Mongoose
     afterAll(async () => {
 
+        // Remove test collection
+        await mongoose.connection.collections['testshortenurlschemas'].drop( function(err) {
+            console.log('Test collection dropped');
+        });
+
         // Close connection
         await mongoose.connection.close();
-
+        
         //Check if connection was closed successfully
         expect(mongoose.connection.readyState).toEqual(0);
         
