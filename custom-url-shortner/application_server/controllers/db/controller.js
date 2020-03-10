@@ -6,7 +6,7 @@
 /**
  * Load model
  */
-const shortenURL = require('../../models/shortenURL');
+let shortenURL = require('../../models/model');
 
 /**
  * CHeck if connection with database if established
