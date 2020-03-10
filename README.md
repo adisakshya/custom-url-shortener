@@ -4,7 +4,9 @@
 
 A custom URL shortner service built using ExpressJS, MongoDB & Nginx.
 
-### Operating Instructions
+## Operating Instructions
+
+### Local Development
 
 #### Prerequisites
 
