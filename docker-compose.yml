@@ -23,3 +23,14 @@ services:
         ports:
           - '5000:5000'
         restart: always
+
+    mongo:
+        image: mongo
+        container_name: database
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: root
+            MONGO_INITDB_ROOT_PASSWORD: root
+        ports:
+            - '27017:27017'
+        restart: always
+        
