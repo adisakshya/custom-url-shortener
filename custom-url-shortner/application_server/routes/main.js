@@ -14,10 +14,5 @@ router.route('/:code')
    * GET item by ID
    */
   .get(mainController.redirectToOriginalURL)
-  
-  /**
-   * POST new item 
-   */
-  .post(mainController.redirectToOriginalURL)
 
 module.exports = router;
