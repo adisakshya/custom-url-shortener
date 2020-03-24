@@ -159,7 +159,7 @@ const createNewItem = async (req, res) => {
         "message": "Original URL already exists",
         "data": {
           "url": item,
-          "duplicate": "URL Code"
+          "duplicate": "Original URL"
         }
       });
   } else {
@@ -784,11 +784,11 @@ const deleteAll = async (req, res) => {
   // Check if no items were present
   if(!resp.deletedCount) {
     return res
-      .status(200)
+      .status(404)
       .json({
         "success": false,
         "error": true,
-        "message": "Insufficient parameters",
+        "message": "No Items found",
         "data": null
       });
   }
