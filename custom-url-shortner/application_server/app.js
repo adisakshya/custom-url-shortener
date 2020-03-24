@@ -12,13 +12,13 @@ app.use(express.urlencoded({ extended: false }));
  * Ping Router
  */
 const pingRounter = require('./routes/ping');
-app.use('/ping', pingRounter);
+app.use('/api/v1/ping', pingRounter);
 
 /**
  * Index Router
  */
 const indexRouter = require('./routes/index');
-app.use('/api/url', indexRouter);
+app.use('/api/v1/url', indexRouter);
 
 /**
  * Main Router
