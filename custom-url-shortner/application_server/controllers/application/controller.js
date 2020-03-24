@@ -11,6 +11,11 @@ const validURL = require('valid-url');
 const dbController = require('../db/controller');
 
 /**
+ * Require cache utility
+ */
+const cache = require('../../lib/cache');
+
+/**
  * Check if connection with database is alive
  * @param {object} req 
  * @param {object} res 
@@ -136,7 +141,9 @@ const createNewItem = async (req, res) => {
     
     // insert into db
     const item = await dbController.insertNewItem(originalURL, baseURL, shortURL, URLCode);
-    
+    // Insert item in cache
+    const cacheItem = await cache.set(URLCode, originalURL);
+
     // return response
     if(item) {
       return res

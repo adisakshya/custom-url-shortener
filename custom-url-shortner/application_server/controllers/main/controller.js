@@ -4,9 +4,9 @@
  */
 
 /**
- * Database Controller
+ * Cache utility
  */
-const dbController = require('../db/controller');
+const cache = require('../../lib/cache');
 
 /**
  * GET item by ID
@@ -18,13 +18,13 @@ const redirectToOriginalURL = async (req, res) => {
   // GET params
   const code = req.params.code;
 
-  // GET item
-  const item = await dbController.getItemByCode(code);
+  // GET originalURL from cache
+  const originalURL = await cache.get(code);
   
   // RETURN response
-  if(item) {
+  if(originalURL) {
     return res
-      .redirect(item.originalURL);
+      .redirect(originalURL);
   } else {
     return res
       .status(404)
