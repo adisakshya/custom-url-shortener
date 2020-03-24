@@ -20,6 +20,7 @@ const cache = require('../../lib/cache');
  * @apiVersion 1.0.0
  * @apiName check connection with database
  * @apiGroup db
+ * @apiPermission admin
  * 
  * @apiParamExample {String} request-example
  * 
@@ -65,6 +66,7 @@ const checkDBConnection = async (req, res) => {
  * @apiVersion 1.0.0
  * @apiName create new entry for shorten url
  * @apiGroup all
+ * @apiPermission admin
  * 
  * @apiParamExample {String} request-example
  * 
@@ -201,6 +203,7 @@ const createNewItem = async (req, res) => {
  * @apiVersion 1.0.0
  * @apiName get all shorten url entries
  * @apiGroup all
+ * @apiPermission admin
  * 
  * @apiParamExample {String} request-example
  * 
@@ -270,6 +273,7 @@ const getAllItems = async (req, res) => {
  * @apiVersion 1.0.0
  * @apiName get shorten url details by ID
  * @apiGroup item
+ * @apiPermission admin
  * 
  * @apiParam {String} id Shorten URL Entry ID
  * 
@@ -345,6 +349,7 @@ const getByID = async (req, res) => {
  * @apiVersion 1.0.0
  * @apiName get shorten url details by URLCode
  * @apiGroup item
+ * @apiPermission admin
  * 
  * @apiParam {String} URLCode URLCode corresponding to shorten URL
  * 
@@ -420,6 +425,7 @@ const getByCode = async (req, res) => {
  * @apiVersion 1.0.0
  * @apiName get shorten url details by originalurl
  * @apiGroup item
+ * @apiPermission admin
  * 
  * @apiParam {String} originalurl Original URL corresponding to shorten URL
  * 
@@ -495,6 +501,7 @@ const getByOriginalURL = async (req, res) => {
  * @apiVersion 1.0.0
  * @apiName update original URL corresponding to shorten URL
  * @apiGroup item
+ * @apiPermission admin
  * 
  * @apiParam {String} id Shorten URL Entry ID
  * @apiParam {String} originalurl Original URL corresponding to shorten URL
@@ -579,6 +586,7 @@ const updateOriginalURL = async (req, res) => {
  * @apiVersion 1.0.0
  * @apiName update urlcode corresponding to shorten URL
  * @apiGroup item
+ * @apiPermission admin
  * 
  * @apiParam {String} id Shorten URL Entry ID
  * @apiParam {String} URLCode URLCode corresponding to shorten URL
@@ -663,6 +671,7 @@ const updateURLCode = async (req, res) => {
  * @apiVersion 1.0.0
  * @apiName delete shorten URL entry
  * @apiGroup item
+ * @apiPermission admin
  * 
  * @apiParam {String} id Shorten URL Entry ID
  * 
@@ -746,6 +755,7 @@ const deleteByID = async (req, res) => {
  * @apiVersion 1.0.0
  * @apiName delete all shorten URL entries
  * @apiGroup all
+ * @apiPermission admin
  * 
  * @apiParamExample {String} request-example
  * 

@@ -13,6 +13,7 @@ const cache = require('../../lib/cache');
  * @apiVersion 1.0.0
  * @apiName redirect to original URL corresponding to shorten URL
  * @apiGroup redirect
+ * @apiPermission none
  * 
  * @apiParam {String} code URLCode corresponding to shorten URL
  * 

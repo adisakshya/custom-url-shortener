@@ -6,6 +6,11 @@ define({ "api": [
     "version": "1.0.0",
     "name": "create_new_entry_for_shorten_url",
     "group": "all",
+    "permission": [
+      {
+        "name": "admin"
+      }
+    ],
     "parameter": {
       "examples": [
         {
@@ -30,6 +35,11 @@ define({ "api": [
     "version": "1.0.0",
     "name": "delete_all_shorten_URL_entries",
     "group": "all",
+    "permission": [
+      {
+        "name": "admin"
+      }
+    ],
     "parameter": {
       "examples": [
         {
@@ -54,6 +64,11 @@ define({ "api": [
     "version": "1.0.0",
     "name": "get_all_shorten_url_entries",
     "group": "all",
+    "permission": [
+      {
+        "name": "admin"
+      }
+    ],
     "parameter": {
       "examples": [
         {
@@ -78,6 +93,11 @@ define({ "api": [
     "version": "1.0.0",
     "name": "check_connection_with_database",
     "group": "db",
+    "permission": [
+      {
+        "name": "admin"
+      }
+    ],
     "parameter": {
       "examples": [
         {
@@ -102,6 +122,11 @@ define({ "api": [
     "version": "1.0.0",
     "name": "delete_shorten_URL_entry",
     "group": "item",
+    "permission": [
+      {
+        "name": "admin"
+      }
+    ],
     "parameter": {
       "fields": {
         "Parameter": [
@@ -137,6 +162,11 @@ define({ "api": [
     "version": "1.0.0",
     "name": "get_shorten_url_details_by_ID",
     "group": "item",
+    "permission": [
+      {
+        "name": "admin"
+      }
+    ],
     "parameter": {
       "fields": {
         "Parameter": [
@@ -172,6 +202,11 @@ define({ "api": [
     "version": "1.0.0",
     "name": "get_shorten_url_details_by_URLCode",
     "group": "item",
+    "permission": [
+      {
+        "name": "admin"
+      }
+    ],
     "parameter": {
       "fields": {
         "Parameter": [
@@ -207,6 +242,11 @@ define({ "api": [
     "version": "1.0.0",
     "name": "get_shorten_url_details_by_originalurl",
     "group": "item",
+    "permission": [
+      {
+        "name": "admin"
+      }
+    ],
     "parameter": {
       "fields": {
         "Parameter": [
@@ -237,11 +277,16 @@ define({ "api": [
   },
   {
     "type": "put",
-    "url": "/api/v1/url/update/originalurl",
+    "url": "/api/v1/url/item/update/originalurl",
     "title": "update original URL corresponding to shorten URL",
     "version": "1.0.0",
     "name": "update_original_URL_corresponding_to_shorten_URL",
     "group": "item",
+    "permission": [
+      {
+        "name": "admin"
+      }
+    ],
     "parameter": {
       "fields": {
         "Parameter": [
@@ -264,7 +309,7 @@ define({ "api": [
       "examples": [
         {
           "title": "request-example",
-          "content": "\ncurl --request PUT http://<domain:port>/api/v1/url/update/originalurl \\\n --data-urlencode 'id=6f8b44b749c80311234883b2' \\\n --data-urlencode 'originalURL=https://github.com'",
+          "content": "\ncurl --request PUT http://<domain:port>/api/v1/url/item/update/originalurl \\\n --data-urlencode 'id=6f8b44b749c80311234883b2' \\\n --data-urlencode 'originalURL=https://github.com'",
           "type": "String"
         },
         {
@@ -279,11 +324,16 @@ define({ "api": [
   },
   {
     "type": "put",
-    "url": "/api/v1/url/update/urlcode",
+    "url": "/api/v1/url/item/update/urlcode",
     "title": "update urlcode corresponding to shorten URL",
     "version": "1.0.0",
     "name": "update_urlcode_corresponding_to_shorten_URL",
     "group": "item",
+    "permission": [
+      {
+        "name": "admin"
+      }
+    ],
     "parameter": {
       "fields": {
         "Parameter": [
@@ -306,7 +356,7 @@ define({ "api": [
       "examples": [
         {
           "title": "request-example",
-          "content": "\ncurl --request PUT http://<domain:port>/api/v1/url/update/urlcode \\\n --data-urlencode 'id=6f8b44b749c80311234883b2' \\\n --data-urlencode 'URLCode=github'",
+          "content": "\ncurl --request PUT http://<domain:port>/api/v1/url/item/update/urlcode \\\n --data-urlencode 'id=6f8b44b749c80311234883b2' \\\n --data-urlencode 'URLCode=github'",
           "type": "String"
         },
         {
@@ -326,6 +376,11 @@ define({ "api": [
     "version": "1.0.0",
     "name": "redirect_to_original_URL_corresponding_to_shorten_URL",
     "group": "redirect",
+    "permission": [
+      {
+        "name": "none"
+      }
+    ],
     "parameter": {
       "fields": {
         "Parameter": [
