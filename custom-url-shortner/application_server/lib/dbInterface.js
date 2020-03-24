@@ -6,14 +6,14 @@
 /**
  * Load model
  */
-let shortenURL = require('../../models/model');
+let shortenURL = require('../models/model');
 
 /**
  * Check if connection with database if established
  */
 const checkDB = async() => {
   // Load database connection test
-  const dbTest = require('../../db/db').connectionTest;
+  const dbTest = require('../db/db').connectionTest;
 
   // RETURN connection test result
   return dbTest();

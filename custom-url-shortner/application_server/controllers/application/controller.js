@@ -8,7 +8,7 @@ const validURL = require('valid-url');
 /**
  * Require Database Controller
  */
-const dbController = require('../db/controller');
+const dbController = require('../../lib/dbInterface');
 
 /**
  * Require cache utility
