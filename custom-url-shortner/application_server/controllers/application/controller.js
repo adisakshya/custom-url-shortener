@@ -19,7 +19,7 @@ const cache = require('../../lib/cache');
  * @api {get} /api/v1/url/db/connection/test check connection with database
  * @apiVersion 1.0.0
  * @apiName check connection with database
- * @apiGroup admin
+ * @apiGroup db
  * 
  * @apiParamExample {String} request-example
  * 
@@ -64,7 +64,7 @@ const checkDBConnection = async (req, res) => {
  * @api {post} /api/v1/url create new entry for shorten url
  * @apiVersion 1.0.0
  * @apiName create new entry for shorten url
- * @apiGroup admin
+ * @apiGroup all
  * 
  * @apiParamExample {String} request-example
  * 
@@ -200,7 +200,7 @@ const createNewItem = async (req, res) => {
  * @api {get} /api/v1/url get all shorten url entries
  * @apiVersion 1.0.0
  * @apiName get all shorten url entries
- * @apiGroup admin
+ * @apiGroup all
  * 
  * @apiParamExample {String} request-example
  * 
@@ -269,7 +269,7 @@ const getAllItems = async (req, res) => {
  * @api {get} /api/v1/url/item get shorten url details by ID
  * @apiVersion 1.0.0
  * @apiName get shorten url details by ID
- * @apiGroup admin
+ * @apiGroup item
  * 
  * @apiParam {String} id Shorten URL Entry ID
  * 
@@ -344,7 +344,7 @@ const getByID = async (req, res) => {
  * @api {get} /api/v1/url/item/urlcode get shorten url details by URLCode
  * @apiVersion 1.0.0
  * @apiName get shorten url details by URLCode
- * @apiGroup admin
+ * @apiGroup item
  * 
  * @apiParam {String} URLCode URLCode corresponding to shorten URL
  * 
@@ -419,7 +419,7 @@ const getByCode = async (req, res) => {
  * @api {get} /api/v1/url/item/originalurl get shorten url details by originalurl
  * @apiVersion 1.0.0
  * @apiName get shorten url details by originalurl
- * @apiGroup admin
+ * @apiGroup item
  * 
  * @apiParam {String} originalurl Original URL corresponding to shorten URL
  * 
@@ -494,7 +494,7 @@ const getByOriginalURL = async (req, res) => {
  * @api {put} /api/v1/url/update/originalurl update original URL corresponding to shorten URL
  * @apiVersion 1.0.0
  * @apiName update original URL corresponding to shorten URL
- * @apiGroup admin
+ * @apiGroup item
  * 
  * @apiParam {String} id Shorten URL Entry ID
  * @apiParam {String} originalurl Original URL corresponding to shorten URL
@@ -578,7 +578,7 @@ const updateOriginalURL = async (req, res) => {
  * @api {put} /api/v1/url/update/urlcode update urlcode corresponding to shorten URL
  * @apiVersion 1.0.0
  * @apiName update urlcode corresponding to shorten URL
- * @apiGroup admin
+ * @apiGroup item
  * 
  * @apiParam {String} id Shorten URL Entry ID
  * @apiParam {String} URLCode URLCode corresponding to shorten URL
@@ -662,7 +662,7 @@ const updateURLCode = async (req, res) => {
  * @api {delete} /api/v1/url/item delete shorten URL entry
  * @apiVersion 1.0.0
  * @apiName delete shorten URL entry
- * @apiGroup admin
+ * @apiGroup item
  * 
  * @apiParam {String} id Shorten URL Entry ID
  * 
@@ -742,10 +742,10 @@ const deleteByID = async (req, res) => {
 };
 
 /**
- * @api {delete} /api/v1/url/item delete all shorten URL entries
+ * @api {delete} /api/v1/url delete all shorten URL entries
  * @apiVersion 1.0.0
  * @apiName delete all shorten URL entries
- * @apiGroup admin
+ * @apiGroup all
  * 
  * @apiParamExample {String} request-example
  * 

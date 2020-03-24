@@ -1,35 +1,11 @@
 [
   {
-    "type": "get",
-    "url": "/api/v1/url/db/connection/test",
-    "title": "check connection with database",
-    "version": "1.0.0",
-    "name": "check_connection_with_database",
-    "group": "admin",
-    "parameter": {
-      "examples": [
-        {
-          "title": "request-example",
-          "content": "\ncurl --request GET http://<domain:port>/api/v1/url/db/connection/test",
-          "type": "String"
-        },
-        {
-          "title": "response-example",
-          "content": "\n{\n     \"success\": true,\n     \"error\": false,\n     \"message\": \"Connection with database is successfully established\",\n     \"data\": null\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "filename": "custom-url-shortner/application_server/controllers/application/controller.js",
-    "groupTitle": "admin"
-  },
-  {
     "type": "post",
     "url": "/api/v1/url",
     "title": "create new entry for shorten url",
     "version": "1.0.0",
     "name": "create_new_entry_for_shorten_url",
-    "group": "admin",
+    "group": "all",
     "parameter": {
       "examples": [
         {
@@ -45,15 +21,15 @@
       ]
     },
     "filename": "custom-url-shortner/application_server/controllers/application/controller.js",
-    "groupTitle": "admin"
+    "groupTitle": "all"
   },
   {
     "type": "delete",
-    "url": "/api/v1/url/item",
+    "url": "/api/v1/url",
     "title": "delete all shorten URL entries",
     "version": "1.0.0",
     "name": "delete_all_shorten_URL_entries",
-    "group": "admin",
+    "group": "all",
     "parameter": {
       "examples": [
         {
@@ -69,7 +45,55 @@
       ]
     },
     "filename": "custom-url-shortner/application_server/controllers/application/controller.js",
-    "groupTitle": "admin"
+    "groupTitle": "all"
+  },
+  {
+    "type": "get",
+    "url": "/api/v1/url",
+    "title": "get all shorten url entries",
+    "version": "1.0.0",
+    "name": "get_all_shorten_url_entries",
+    "group": "all",
+    "parameter": {
+      "examples": [
+        {
+          "title": "request-example",
+          "content": "\ncurl --request GET http://<domain:port>/api/v1/url",
+          "type": "String"
+        },
+        {
+          "title": "response-example",
+          "content": "\n{\n     \"success\": true,\n     \"error\": false,\n     \"message\": \"Items found\",\n     \"data\": {\n        \"items\": [\n            {\n                \"_id\": \"5e7a33a638b79200123772a1\",\n                \"originalURL\": \"https://www.google.co.in\",\n                \"shortURL\": \"http://192.168.99.101/google\",\n                \"URLCode\": \"google\",\n                \"createdAt\": \"2020-03-24T16:21:58.953Z\",\n                \"updatedAt\": \"2020-03-24T16:21:58.953Z\",\n                \"__v\": 0\n            },\n            {\n                \"_id\": \"6f8b44b749c80311234883b2\",\n                \"originalURL\": \"https://github.com/adisakshya\",\n                \"shortURL\": \"http://192.168.99.101/adi\",\n                \"URLCode\": \"adi\",\n                \"createdAt\": \"2020-03-24T16:41:20.489Z\",\n                \"updatedAt\": \"2020-03-24T16:41:20.489Z\",\n                \"__v\": 0\n            }\n        ]\n      }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "custom-url-shortner/application_server/controllers/application/controller.js",
+    "groupTitle": "all"
+  },
+  {
+    "type": "get",
+    "url": "/api/v1/url/db/connection/test",
+    "title": "check connection with database",
+    "version": "1.0.0",
+    "name": "check_connection_with_database",
+    "group": "db",
+    "parameter": {
+      "examples": [
+        {
+          "title": "request-example",
+          "content": "\ncurl --request GET http://<domain:port>/api/v1/url/db/connection/test",
+          "type": "String"
+        },
+        {
+          "title": "response-example",
+          "content": "\n{\n     \"success\": true,\n     \"error\": false,\n     \"message\": \"Connection with database is successfully established\",\n     \"data\": null\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "custom-url-shortner/application_server/controllers/application/controller.js",
+    "groupTitle": "db"
   },
   {
     "type": "delete",
@@ -77,7 +101,7 @@
     "title": "delete shorten URL entry",
     "version": "1.0.0",
     "name": "delete_shorten_URL_entry",
-    "group": "admin",
+    "group": "item",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -104,31 +128,7 @@
       ]
     },
     "filename": "custom-url-shortner/application_server/controllers/application/controller.js",
-    "groupTitle": "admin"
-  },
-  {
-    "type": "get",
-    "url": "/api/v1/url",
-    "title": "get all shorten url entries",
-    "version": "1.0.0",
-    "name": "get_all_shorten_url_entries",
-    "group": "admin",
-    "parameter": {
-      "examples": [
-        {
-          "title": "request-example",
-          "content": "\ncurl --request GET http://<domain:port>/api/v1/url",
-          "type": "String"
-        },
-        {
-          "title": "response-example",
-          "content": "\n{\n     \"success\": true,\n     \"error\": false,\n     \"message\": \"Items found\",\n     \"data\": {\n        \"items\": [\n            {\n                \"_id\": \"5e7a33a638b79200123772a1\",\n                \"originalURL\": \"https://www.google.co.in\",\n                \"shortURL\": \"http://192.168.99.101/google\",\n                \"URLCode\": \"google\",\n                \"createdAt\": \"2020-03-24T16:21:58.953Z\",\n                \"updatedAt\": \"2020-03-24T16:21:58.953Z\",\n                \"__v\": 0\n            },\n            {\n                \"_id\": \"6f8b44b749c80311234883b2\",\n                \"originalURL\": \"https://github.com/adisakshya\",\n                \"shortURL\": \"http://192.168.99.101/adi\",\n                \"URLCode\": \"adi\",\n                \"createdAt\": \"2020-03-24T16:41:20.489Z\",\n                \"updatedAt\": \"2020-03-24T16:41:20.489Z\",\n                \"__v\": 0\n            }\n        ]\n      }\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "filename": "custom-url-shortner/application_server/controllers/application/controller.js",
-    "groupTitle": "admin"
+    "groupTitle": "item"
   },
   {
     "type": "get",
@@ -136,7 +136,7 @@
     "title": "get shorten url details by ID",
     "version": "1.0.0",
     "name": "get_shorten_url_details_by_ID",
-    "group": "admin",
+    "group": "item",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -163,7 +163,7 @@
       ]
     },
     "filename": "custom-url-shortner/application_server/controllers/application/controller.js",
-    "groupTitle": "admin"
+    "groupTitle": "item"
   },
   {
     "type": "get",
@@ -171,7 +171,7 @@
     "title": "get shorten url details by URLCode",
     "version": "1.0.0",
     "name": "get_shorten_url_details_by_URLCode",
-    "group": "admin",
+    "group": "item",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -198,7 +198,7 @@
       ]
     },
     "filename": "custom-url-shortner/application_server/controllers/application/controller.js",
-    "groupTitle": "admin"
+    "groupTitle": "item"
   },
   {
     "type": "get",
@@ -206,7 +206,7 @@
     "title": "get shorten url details by originalurl",
     "version": "1.0.0",
     "name": "get_shorten_url_details_by_originalurl",
-    "group": "admin",
+    "group": "item",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -233,7 +233,7 @@
       ]
     },
     "filename": "custom-url-shortner/application_server/controllers/application/controller.js",
-    "groupTitle": "admin"
+    "groupTitle": "item"
   },
   {
     "type": "put",
@@ -241,7 +241,7 @@
     "title": "update original URL corresponding to shorten URL",
     "version": "1.0.0",
     "name": "update_original_URL_corresponding_to_shorten_URL",
-    "group": "admin",
+    "group": "item",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -275,7 +275,7 @@
       ]
     },
     "filename": "custom-url-shortner/application_server/controllers/application/controller.js",
-    "groupTitle": "admin"
+    "groupTitle": "item"
   },
   {
     "type": "put",
@@ -283,7 +283,7 @@
     "title": "update urlcode corresponding to shorten URL",
     "version": "1.0.0",
     "name": "update_urlcode_corresponding_to_shorten_URL",
-    "group": "admin",
+    "group": "item",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -317,7 +317,7 @@
       ]
     },
     "filename": "custom-url-shortner/application_server/controllers/application/controller.js",
-    "groupTitle": "admin"
+    "groupTitle": "item"
   },
   {
     "type": "get",
@@ -325,7 +325,7 @@
     "title": "redirect to original URL corresponding to shorten URL",
     "version": "1.0.0",
     "name": "redirect_to_original_URL_corresponding_to_shorten_URL",
-    "group": "all",
+    "group": "redirect",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -347,6 +347,6 @@
       ]
     },
     "filename": "custom-url-shortner/application_server/controllers/main/controller.js",
-    "groupTitle": "all"
+    "groupTitle": "redirect"
   }
 ]
