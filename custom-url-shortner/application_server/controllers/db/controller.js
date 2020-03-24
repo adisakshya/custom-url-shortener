@@ -9,7 +9,7 @@
 let shortenURL = require('../../models/model');
 
 /**
- * CHeck if connection with database if established
+ * Check if connection with database if established
  */
 const checkDB = async() => {
   // Load database connection test
