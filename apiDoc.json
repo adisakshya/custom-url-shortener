@@ -1,0 +1,11 @@
+{
+    "name": "Custom URL Shortner API Documentation",
+    "version": "1.0.0",
+    "description": "This is the documentation for the custom URL shortner service",
+    "title": "Documentation | Custom URL Shortner API",
+    "url":"http://<domain:port>",
+    "template": {
+        "withCompare": true,
+        "withGenerator": true
+    }
+  }
