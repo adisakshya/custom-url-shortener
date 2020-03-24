@@ -25,9 +25,10 @@ const checkDB = async() => {
  */
 const getItemByID = async (id) => {
   
-  // GET item
   try {
+    // GET item
     const item = await shortenURL.findById(id);
+    
     // RETURN item
     if(item) {
       return item;
@@ -95,7 +96,7 @@ const getItemByOriginalURL = async (originalURL) => {
 const updateItem = async (id, updatedItem) => {
   
   try {
-    // GET item
+    // UPDATE item
     const item = await shortenURL.findByIdAndUpdate(id, updatedItem, {new: true});
 
     // RETURN item

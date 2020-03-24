@@ -9,7 +9,7 @@
 const cache = require('../../lib/cache');
 
 /**
- * GET item by ID
+ * Redirect to original URL
  * @param {object} req
  * @param {object} res
  */
@@ -21,18 +21,18 @@ const redirectToOriginalURL = async (req, res) => {
   // GET originalURL from cache
   const originalURL = await cache.get(code);
   
-  // RETURN response
   if(originalURL) {
+    // Redirect to original URL
     return res
       .redirect(originalURL);
   } else {
+    // Report error
     return res
       .status(404)
       .json({
-        "message": 'No such URL ID found'
+        "message": 'No such URL code found'
       })
   }
 };
-
 
 exports.redirectToOriginalURL = redirectToOriginalURL;

@@ -47,10 +47,10 @@ const checkDBConnection = async (req, res) => {
  */
 const createNewItem = async (req, res) => {
 
-  // GET originalURL, baseURL and URLCode
+  // Get originalURL, baseURL and URLCode
   const { originalURL, baseURL, URLCode } = req.body;
 
-  // CHECK if all parameters are given
+  // Check if all parameters are given
   if(!(originalURL && baseURL && URLCode)) {
     return res
       .status(400)
@@ -59,7 +59,7 @@ const createNewItem = async (req, res) => {
       })
   }
 
-  // CHECK if valid URL
+  // Check if valid URL
   if(!validURL.isUri(baseURL)) {
     return res
       .status(400)
@@ -78,7 +78,7 @@ const createNewItem = async (req, res) => {
   // Check if URL code already exists
   const url = await dbController.getItemByCode(URLCode);
   if(url) {
-    // return response
+    // Return response
     return res
       .status(200)
       .json({
@@ -90,7 +90,7 @@ const createNewItem = async (req, res) => {
   // Check if item with this original URL already exists
   const item = await dbController.getItemByOriginalURL(originalURL);
   if(item) {
-    // return response
+    // Return response
     return res
       .status(200)
       .json({
@@ -98,7 +98,7 @@ const createNewItem = async (req, res) => {
         'duplicate': 'Original URL'
       });
   } else {
-    // create a short URL
+    // Create a short URL
     let shortURL = baseURL + "/" + URLCode;
     
     // Insert into db
@@ -108,7 +108,7 @@ const createNewItem = async (req, res) => {
       // Insert item in cache
       const cacheItem = await cache.set(URLCode, originalURL);
       
-      // return response
+      // Return response
       return res
         .status(200)
         .json({
@@ -132,10 +132,10 @@ const createNewItem = async (req, res) => {
  */
 const getAllItems = async (req, res) => {
   
-  // GET items
+  // Get items
   const items = await dbController.getItems();
 
-  // RETURN response
+  // Return response
   if(items.length) {
     return res
       .status(200)
@@ -158,10 +158,10 @@ const getAllItems = async (req, res) => {
  */
 const getByID = async (req, res) => {
   
-  // GET params
+  // Get params
   const id = req.query.id;
 
-  // CHECK if all parameters are given
+  // Check if all parameters are given
   if(!id) {
     return res
       .status(400)
@@ -170,10 +170,10 @@ const getByID = async (req, res) => {
       })
   }
 
-  // GET item
+  // Get item
   const item = await dbController.getItemByID(id);
   
-  // RETURN response
+  // Return response
   if(item) {
     return res
       .status(200)
@@ -196,10 +196,10 @@ const getByID = async (req, res) => {
  */
 const getByCode = async (req, res) => {
   
-  // GET params
+  // Get params
   const code = req.query.code;
 
-  // CHECK if all parameters are given
+  // Check if all parameters are given
   if(!code) {
     return res
       .status(400)
@@ -208,10 +208,10 @@ const getByCode = async (req, res) => {
       })
   }
 
-  // GET item
+  // Get item
   const item = await dbController.getItemByCode(code);
   
-  // RETURN response
+  // Return response
   if(item) {
     return res
       .status(200)
@@ -234,10 +234,10 @@ const getByCode = async (req, res) => {
  */
 const getByOriginalURL = async (req, res) => {
   
-  // GET params
+  // Get params
   const originalURL = req.query.originalURL;
 
-  // CHECK if all parameters are given
+  // Check if all parameters are given
   if(!originalURL) {
     return res
       .status(400)
@@ -246,10 +246,10 @@ const getByOriginalURL = async (req, res) => {
       })
   }
 
-  // GET item
+  // Get item
   const item = await dbController.getItemByOriginalURL(originalURL);
   
-  // RETURN response
+  // Return response
   if(item) {
     return res
       .status(200)
@@ -272,10 +272,10 @@ const getByOriginalURL = async (req, res) => {
  */
 const updateOriginalURL = async (req, res) => {
   
-  // GET params
+  // Get params
   const { id, originalURL } = req.body;
 
-  // CHECK if all parameters are given
+  // Check if all parameters are given
   if(!(id && originalURL)) {
     return res
       .status(400)
@@ -284,7 +284,7 @@ const updateOriginalURL = async (req, res) => {
       })
   }
 
-  // GET item
+  // Get item
   const item = await dbController.updateItem(id, {
     'originalURL': originalURL
   });
@@ -294,7 +294,7 @@ const updateOriginalURL = async (req, res) => {
     let URLCode = item.URLCode;
     let updatedItem = await cache.set(URLCode, originalURL);
 
-    // RETURN response
+    // Return response
     return res
       .status(200)
       .json({
@@ -316,10 +316,10 @@ const updateOriginalURL = async (req, res) => {
  */
 const updateURLCode = async (req, res) => {
   
-  // GET params
+  // Get params
   const { id, URLCode } = req.body;
 
-  // CHECK if all parameters are given
+  // Check if all parameters are given
   if(!(id && URLCode)) {
     return res
       .status(400)
@@ -328,7 +328,7 @@ const updateURLCode = async (req, res) => {
       })
   }
 
-  // GET item
+  // Get item
   const item = await dbController.updateItem(id, {
     'URLCode': URLCode
   });
@@ -338,7 +338,7 @@ const updateURLCode = async (req, res) => {
     let originalURL = item.originalURL;
     let updatedItem = await cache.set(URLCode, originalURL);
     
-    // RETURN response
+    // Return response
     return res
       .status(200)
       .json({
@@ -360,10 +360,10 @@ const updateURLCode = async (req, res) => {
  */
 const deleteByID = async (req, res) => {
   
-  // GET ID
+  // Get ID
   const { id } = req.body;
 
-  // CHECK if all parameters are given
+  // Check if all parameters are given
   if(!id) {
     return res
       .status(400)
@@ -372,7 +372,7 @@ const deleteByID = async (req, res) => {
       })
   }
 
-  // GET url code
+  // Get url code
   const item = await dbController.getItemByID(id);
   let itemCode = item.URLCode;
 
@@ -381,7 +381,7 @@ const deleteByID = async (req, res) => {
   // Remove from cache
   const removedCache = await cache.deleteKey(itemCode);
   
-  // RETURN response
+  // Return response
   if(removedItem) {
     return res
       .status(200)
@@ -404,12 +404,12 @@ const deleteByID = async (req, res) => {
  */
 const deleteAll = async (req, res) => {
   
-  // GET item
+  // Get item
   const resp = await dbController.deleteAllItems();
   // Clear cache
   const temp = await cache.deleteAll();
   
-  // RETURN response
+  // Return response
   if(resp) {
     return res
       .status(200)
