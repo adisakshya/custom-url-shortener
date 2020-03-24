@@ -1,6 +1,6 @@
 # Custom URL Shortner
 
-[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/adisakshya/custom-url-shortner/blob/master/LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/adisakshya/custom-url-shortner/pulls) [![Under Development](https://img.shields.io/badge/Under_Development-yes-brightgreen.svg)](https://github.com/adisakshya/custom-url-shortner/pulls) [![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)]()
+[![](https://img.shields.io/badge/docs%20-view%20API%20Documentation-blue.svg?style=for-the-badge&logo=appveyor)](https://www.adisakshya.co/custom-url-shortner/) [![version](https://img.shields.io/badge/Version-1.0.0-blue.svg?style=for-the-badge&logo=appveyor)](https://github.com/adisakshya/custom-url-shortner) [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-blue.svg?style=for-the-badge&logo=appveyor)](https://github.com/adisakshya/custom-url-shortner/pulls) [![Under Development](https://img.shields.io/badge/Under%20Development-Yes-blue.svg?style=for-the-badge&logo=appveyor)](https://www.adisakshya.co/custom-url-shortner/) [![Open Source](https://img.shields.io/badge/Open%20Source-Love-red.svg?style=for-the-badge&logo=appveyor)]()
 
 A custom URL shortner service built using ExpressJS, MongoDB & Nginx.
 
