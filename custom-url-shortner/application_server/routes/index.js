@@ -49,4 +49,20 @@ router.route('/db/connection/test')
    */
   .get(applicationController.checkDBConnection);
 
+/**
+ * Database Test Route
+ */
+router.route('/update/originalURL')
+  /**
+   * GET database connection status
+   */
+  .put(applicationController.updateOriginalURL);
+
+
+router.route('/update/URLCode')
+  /**
+   * GET database connection status
+   */
+  .put(applicationController.updateURLCode);
+
 module.exports = router;

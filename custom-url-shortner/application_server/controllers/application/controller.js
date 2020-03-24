@@ -103,11 +103,12 @@ const createNewItem = async (req, res) => {
     
     // Insert into db
     const item = await dbController.insertNewItem(originalURL, baseURL, shortURL, URLCode);
-    // Insert item in cache
-    const cacheItem = await cache.set(URLCode, originalURL);
 
-    // return response
     if(item) {
+      // Insert item in cache
+      const cacheItem = await cache.set(URLCode, originalURL);
+      
+      // return response
       return res
         .status(200)
         .json({
@@ -265,6 +266,94 @@ const getByOriginalURL = async (req, res) => {
 };
 
 /**
+ * UPDATE original URL
+ * @param {object} req
+ * @param {object} res
+ */
+const updateOriginalURL = async (req, res) => {
+  
+  // GET params
+  const { id, originalURL } = req.body;
+
+  // CHECK if all parameters are given
+  if(!(id && originalURL)) {
+    return res
+      .status(400)
+      .json({
+        'message': 'Insufficient parameters'
+      })
+  }
+
+  // GET item
+  const item = await dbController.updateItem(id, {
+    'originalURL': originalURL
+  });
+  
+  if(item) {
+    // Update cache
+    let URLCode = item.URLCode;
+    let updatedItem = await cache.set(URLCode, originalURL);
+
+    // RETURN response
+    return res
+      .status(200)
+      .json({
+        "message": item
+      });
+  } else {
+    return res
+      .status(404)
+      .json({
+        "message": 'No such URL found'
+      })
+  }
+};
+
+/**
+ * UPDATE URL code
+ * @param {object} req
+ * @param {object} res
+ */
+const updateURLCode = async (req, res) => {
+  
+  // GET params
+  const { id, URLCode } = req.body;
+
+  // CHECK if all parameters are given
+  if(!(id && URLCode)) {
+    return res
+      .status(400)
+      .json({
+        'message': 'Insufficient parameters'
+      })
+  }
+
+  // GET item
+  const item = await dbController.updateItem(id, {
+    'URLCode': URLCode
+  });
+  
+  if(item) {
+    // Update cache
+    let originalURL = item.originalURL;
+    let updatedItem = await cache.set(URLCode, originalURL);
+    
+    // RETURN response
+    return res
+      .status(200)
+      .json({
+        "message": item
+      });
+  } else {
+    return res
+      .status(404)
+      .json({
+        "message": 'No such URL found'
+      })
+  }
+};
+
+/**
  * DELETE item by ID
  * @param {object} req
  * @param {object} res
@@ -342,5 +431,7 @@ exports.getAllItems = getAllItems;
 exports.getByID = getByID;
 exports.getByCode = getByCode;
 exports.getByOriginalURL = getByOriginalURL;
+exports.updateOriginalURL = updateOriginalURL;
+exports.updateURLCode = updateURLCode;
 exports.deleteByID = deleteByID;
 exports.deleteAll = deleteAll;

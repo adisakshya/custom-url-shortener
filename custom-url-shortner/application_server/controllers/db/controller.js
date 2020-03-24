@@ -89,6 +89,28 @@ const getItemByOriginalURL = async (originalURL) => {
 };
 
 /**
+ * UPDATE item's original URL
+ * @param {String} originalURL 
+ */
+const updateItem = async (id, updatedItem) => {
+  
+  try {
+    // GET item
+    const item = await shortenURL.findByIdAndUpdate(id, updatedItem, {new: true});
+
+    // RETURN item
+    if(item) {
+      return item;
+    } else {
+      return false;
+    }
+  } catch(err) {
+    return false
+  }
+  
+};
+
+/**
  * INSERT new item
  * @param {String} originalURL 
  * @param {String} baseURL 
@@ -186,6 +208,7 @@ exports.checkDB = checkDB;
 exports.getItemByID = getItemByID;
 exports.getItemByCode = getItemByCode;
 exports.getItemByOriginalURL = getItemByOriginalURL;
+exports.updateItem = updateItem;
 exports.insertNewItem = insertNewItem;
 exports.deleteItemByID = deleteItemByID;
 exports.deleteAllItems = deleteAllItems;
