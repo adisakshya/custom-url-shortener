@@ -41,82 +41,6 @@ const checkDBConnection = async (req, res) => {
 }
 
 /**
- * GET item by ID
- * @param {object} req
- * @param {object} res
- */
-const getByID = async (req, res) => {
-  
-  // GET params
-  const id = req.query.id;
-
-  // CHECK if all parameters are given
-  if(!id) {
-    return res
-      .status(400)
-      .json({
-        'message': 'Insufficient parameters'
-      })
-  }
-
-  // GET item
-  const item = await dbController.getItemByID(id);
-  
-  // RETURN response
-  if(item) {
-    return res
-      .status(200)
-      .json({
-        "message": item
-      });
-  } else {
-    return res
-      .status(404)
-      .json({
-        "message": 'No such URL ID found'
-      })
-  }
-};
-
-/**
- * GET item by Code
- * @param {object} req
- * @param {object} res
- */
-const getByCode = async (req, res) => {
-  
-  // GET params
-  const code = req.query.code;
-
-  // CHECK if all parameters are given
-  if(!code) {
-    return res
-      .status(400)
-      .json({
-        'message': 'Insufficient parameters'
-      })
-  }
-
-  // GET item
-  const item = await dbController.getItemByCode(code);
-  
-  // RETURN response
-  if(item) {
-    return res
-      .status(200)
-      .json({
-        "message": item
-      });
-  } else {
-    return res
-      .status(404)
-      .json({
-        "message": 'No such URL code found'
-      })
-  }
-};
-
-/**
  * POST new item
  * @param {object} req 
  * @param {object} res 
@@ -201,6 +125,146 @@ const createNewItem = async (req, res) => {
 };
 
 /**
+ * Get all items
+ * @param {object} req
+ * @param {object} res
+ */
+const getAllItems = async (req, res) => {
+  
+  // GET items
+  const items = await dbController.getItems();
+
+  // RETURN response
+  if(items.length) {
+    return res
+      .status(200)
+      .json({
+        "message": items
+      });
+  } else {
+    return res
+      .status(200)
+      .json({
+        "message": 'No Item found'
+      });
+  }
+};
+
+/**
+ * GET item by ID
+ * @param {object} req
+ * @param {object} res
+ */
+const getByID = async (req, res) => {
+  
+  // GET params
+  const id = req.query.id;
+
+  // CHECK if all parameters are given
+  if(!id) {
+    return res
+      .status(400)
+      .json({
+        'message': 'Insufficient parameters'
+      })
+  }
+
+  // GET item
+  const item = await dbController.getItemByID(id);
+  
+  // RETURN response
+  if(item) {
+    return res
+      .status(200)
+      .json({
+        "message": item
+      });
+  } else {
+    return res
+      .status(404)
+      .json({
+        "message": 'No such URL ID found'
+      })
+  }
+};
+
+/**
+ * GET item by Code
+ * @param {object} req
+ * @param {object} res
+ */
+const getByCode = async (req, res) => {
+  
+  // GET params
+  const code = req.query.code;
+
+  // CHECK if all parameters are given
+  if(!code) {
+    return res
+      .status(400)
+      .json({
+        'message': 'Insufficient parameters'
+      })
+  }
+
+  // GET item
+  const item = await dbController.getItemByCode(code);
+  
+  // RETURN response
+  if(item) {
+    return res
+      .status(200)
+      .json({
+        "message": item
+      });
+  } else {
+    return res
+      .status(404)
+      .json({
+        "message": 'No such URL code found'
+      })
+  }
+};
+
+/**
+ * GET item by original URL
+ * @param {object} req
+ * @param {object} res
+ */
+const getByOriginalURL = async (req, res) => {
+  
+  // GET params
+  const originalURL = req.query.originalURL;
+
+  // CHECK if all parameters are given
+  if(!originalURL) {
+    return res
+      .status(400)
+      .json({
+        'message': 'Insufficient parameters'
+      })
+  }
+
+  // GET item
+  const item = await dbController.getItemByOriginalURL(originalURL);
+  
+  // RETURN response
+  if(item) {
+    return res
+      .status(200)
+      .json({
+        "message": item
+      });
+  } else {
+    return res
+      .status(404)
+      .json({
+        "message": 'No such URL found'
+      })
+  }
+};
+
+/**
  * DELETE item by ID
  * @param {object} req
  * @param {object} res
@@ -272,35 +336,11 @@ const deleteAll = async (req, res) => {
   }
 };
 
-/**
- * Get all items
- * @param {object} req
- * @param {object} res
- */
-const getAllItems = async (req, res) => {
-  
-  // GET items
-  const items = await dbController.getItems();
-
-  // RETURN response
-  if(items.length) {
-    return res
-      .status(200)
-      .json({
-        "message": items
-      });
-  } else {
-    return res
-      .status(200)
-      .json({
-        "message": 'No Item found'
-      });
-  }
-};
-
 exports.checkDBConnection = checkDBConnection;
-exports.getByID = getByID;
 exports.createNewItem = createNewItem;
+exports.getAllItems = getAllItems;
+exports.getByID = getByID;
+exports.getByCode = getByCode;
+exports.getByOriginalURL = getByOriginalURL;
 exports.deleteByID = deleteByID;
 exports.deleteAll = deleteAll;
-exports.getAllItems = getAllItems;
