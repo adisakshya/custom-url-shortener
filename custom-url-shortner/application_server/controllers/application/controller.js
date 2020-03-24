@@ -16,9 +16,23 @@ const dbController = require('../db/controller');
 const cache = require('../../lib/cache');
 
 /**
- * Check if connection with database is alive
- * @param {object} req 
- * @param {object} res 
+ * @api {get} /api/v1/url/db/connection/test check connection with database
+ * @apiVersion 1.0.0
+ * @apiName check connection with database
+ * @apiGroup admin
+ * 
+ * @apiParamExample {String} request-example
+ * 
+ * curl --request GET http://<domain:port>/api/v1/url/db/connection/test
+ * 
+ * @apiParamExample {json} response-example
+ * 
+ * {
+ *      "success": true,
+ *      "error": false,
+ *      "message": "Connection with database is successfully established",
+ *      "data": null
+ * }
  */
 const checkDBConnection = async (req, res) => {
 
@@ -47,9 +61,33 @@ const checkDBConnection = async (req, res) => {
 }
 
 /**
- * POST new item
- * @param {object} req 
- * @param {object} res 
+ * @api {post} /api/v1/url create new entry for shorten url
+ * @apiVersion 1.0.0
+ * @apiName create new entry for shorten url
+ * @apiGroup admin
+ * 
+ * @apiParamExample {String} request-example
+ * 
+ * curl --request GET http://<domain:port>/api/v1/url
+ * 
+ * @apiParamExample {json} response-example
+ * 
+ * {
+ *      "success": true,
+ *      "error": false,
+ *      "message": "New shorten url entry created",
+ *      "data": {
+ *        "url": {
+ *           "_id": "5e7a33a638b79200123772a1",
+ *           "originalURL": "https://www.google.co.in",
+ *           "shortURL": "http://<domain>/google",
+ *           "URLCode": "google",
+ *           "createdAt": "2020-03-24T16:21:58.953Z",
+ *           "updatedAt": "2020-03-24T16:21:58.953Z",
+ *           "__v": 0
+ *         }
+ *       }
+ * }
  */
 const createNewItem = async (req, res) => {
 
@@ -159,9 +197,44 @@ const createNewItem = async (req, res) => {
 };
 
 /**
- * Get all items
- * @param {object} req
- * @param {object} res
+ * @api {get} /api/v1/url get all shorten url entries
+ * @apiVersion 1.0.0
+ * @apiName get all shorten url entries
+ * @apiGroup admin
+ * 
+ * @apiParamExample {String} request-example
+ * 
+ * curl --request GET http://<domain:port>/api/v1/url
+ * 
+ * @apiParamExample {json} response-example
+ * 
+ * {
+ *      "success": true,
+ *      "error": false,
+ *      "message": "Items found",
+ *      "data": {
+ *         "items": [
+ *             {
+ *                 "_id": "5e7a33a638b79200123772a1",
+ *                 "originalURL": "https://www.google.co.in",
+ *                 "shortURL": "http://192.168.99.101/google",
+ *                 "URLCode": "google",
+ *                 "createdAt": "2020-03-24T16:21:58.953Z",
+ *                 "updatedAt": "2020-03-24T16:21:58.953Z",
+ *                 "__v": 0
+ *             },
+ *             {
+ *                 "_id": "6f8b44b749c80311234883b2",
+ *                 "originalURL": "https://github.com/adisakshya",
+ *                 "shortURL": "http://192.168.99.101/adi",
+ *                 "URLCode": "adi",
+ *                 "createdAt": "2020-03-24T16:41:20.489Z",
+ *                 "updatedAt": "2020-03-24T16:41:20.489Z",
+ *                 "__v": 0
+ *             }
+ *         ]
+ *       }
+ * }
  */
 const getAllItems = async (req, res) => {
   
@@ -175,7 +248,7 @@ const getAllItems = async (req, res) => {
       .json({
         "success": true,
         "error": false,
-        'message': "",
+        'message': "Items found",
         "data": {
           "items": items
         }
@@ -193,9 +266,35 @@ const getAllItems = async (req, res) => {
 };
 
 /**
- * GET item by ID
- * @param {object} req
- * @param {object} res
+ * @api {get} /api/v1/url/item get shorten url details by ID
+ * @apiVersion 1.0.0
+ * @apiName get shorten url details by ID
+ * @apiGroup admin
+ * 
+ * @apiParam {String} id Shorten URL Entry ID
+ * 
+ * @apiParamExample {String} request-example
+ * 
+ * curl --request GET http://<domain:port>/api/v1/url/item?id=ShortenURLEntryID
+ * 
+ * @apiParamExample {json} response-example
+ * 
+ * {
+ *      "success": true,
+ *      "error": false,
+ *      "message": "URL ID found",
+ *      "data": {
+ *        "url": {
+ *           "_id": "6f8b44b749c80311234883b2",
+ *           "originalURL": "https://github.com/adisakshya",
+ *           "shortURL": "http://<domain>/adi",
+ *           "URLCode": "adi",
+ *           "createdAt": "2020-03-24T16:41:20.489Z",
+ *           "updatedAt": "2020-03-24T16:41:20.489Z",
+ *           "__v": 0
+ *         }
+ *       }
+ * }
  */
 const getByID = async (req, res) => {
   
@@ -242,9 +341,35 @@ const getByID = async (req, res) => {
 };
 
 /**
- * GET item by Code
- * @param {object} req
- * @param {object} res
+ * @api {get} /api/v1/url/item/urlcode get shorten url details by URLCode
+ * @apiVersion 1.0.0
+ * @apiName get shorten url details by URLCode
+ * @apiGroup admin
+ * 
+ * @apiParam {String} URLCode URLCode corresponding to shorten URL
+ * 
+ * @apiParamExample {String} request-example
+ * 
+ * curl --request GET http://<domain:port>/api/v1/url/item/urlcode?URLCode=ShortenURLCode
+ * 
+ * @apiParamExample {json} response-example
+ * 
+ * {
+ *      "success": true,
+ *      "error": false,
+ *      "message": "URL Code found",
+ *      "data": {
+ *        "url": {
+ *           "_id": "6f8b44b749c80311234883b2",
+ *           "originalURL": "https://github.com/adisakshya",
+ *           "shortURL": "http://<domain>/adi",
+ *           "URLCode": "adi",
+ *           "createdAt": "2020-03-24T16:41:20.489Z",
+ *           "updatedAt": "2020-03-24T16:41:20.489Z",
+ *           "__v": 0
+ *         }
+ *       }
+ * }
  */
 const getByCode = async (req, res) => {
   
@@ -291,9 +416,35 @@ const getByCode = async (req, res) => {
 };
 
 /**
- * GET item by original URL
- * @param {object} req
- * @param {object} res
+ * @api {get} /api/v1/url/item/originalurl get shorten url details by originalurl
+ * @apiVersion 1.0.0
+ * @apiName get shorten url details by originalurl
+ * @apiGroup admin
+ * 
+ * @apiParam {String} originalurl Original URL corresponding to shorten URL
+ * 
+ * @apiParamExample {String} request-example
+ * 
+ * curl --request GET http://<domain:port>/api/v1/url/item/urlcode?originalurl=OriginalURL
+ * 
+ * @apiParamExample {json} response-example
+ * 
+ * {
+ *      "success": true,
+ *      "error": false,
+ *      "message": "Original URL found",
+ *      "data": {
+ *        "url": {
+ *           "_id": "6f8b44b749c80311234883b2",
+ *           "originalURL": "https://github.com/adisakshya",
+ *           "shortURL": "http://<domain>/adi",
+ *           "URLCode": "adi",
+ *           "createdAt": "2020-03-24T16:41:20.489Z",
+ *           "updatedAt": "2020-03-24T16:41:20.489Z",
+ *           "__v": 0
+ *         }
+ *       }
+ * }
  */
 const getByOriginalURL = async (req, res) => {
   
@@ -340,9 +491,38 @@ const getByOriginalURL = async (req, res) => {
 };
 
 /**
- * UPDATE original URL
- * @param {object} req
- * @param {object} res
+ * @api {put} /api/v1/url/update/originalurl update original URL corresponding to shorten URL
+ * @apiVersion 1.0.0
+ * @apiName update original URL corresponding to shorten URL
+ * @apiGroup admin
+ * 
+ * @apiParam {String} id Shorten URL Entry ID
+ * @apiParam {String} originalurl Original URL corresponding to shorten URL
+ * 
+ * @apiParamExample {String} request-example
+ * 
+ * curl --request PUT http://<domain:port>/api/v1/url/update/originalurl \
+ *  --data-urlencode 'id=6f8b44b749c80311234883b2' \
+ *  --data-urlencode 'originalURL=https://github.com'
+ * 
+ * @apiParamExample {json} response-example
+ * 
+ * {
+ *      "success": true,
+ *      "error": false,
+ *      "message": "URL updated",
+ *      "data": {
+ *        "url": {
+ *           "_id": "6f8b44b749c80311234883b2",
+ *           "originalURL": "https://github.com",
+ *           "shortURL": "http://<domain>/adi",
+ *           "URLCode": "adi",
+ *           "createdAt": "2020-03-24T16:41:20.489Z",
+ *           "updatedAt": "2020-03-24T16:41:20.489Z",
+ *           "__v": 0
+ *         }
+ *       }
+ * }
  */
 const updateOriginalURL = async (req, res) => {
   
@@ -395,9 +575,38 @@ const updateOriginalURL = async (req, res) => {
 };
 
 /**
- * UPDATE URL code
- * @param {object} req
- * @param {object} res
+ * @api {put} /api/v1/url/update/urlcode update urlcode corresponding to shorten URL
+ * @apiVersion 1.0.0
+ * @apiName update urlcode corresponding to shorten URL
+ * @apiGroup admin
+ * 
+ * @apiParam {String} id Shorten URL Entry ID
+ * @apiParam {String} URLCode URLCode corresponding to shorten URL
+ * 
+ * @apiParamExample {String} request-example
+ * 
+ * curl --request PUT http://<domain:port>/api/v1/url/update/urlcode \
+ *  --data-urlencode 'id=6f8b44b749c80311234883b2' \
+ *  --data-urlencode 'URLCode=github'
+ * 
+ * @apiParamExample {json} response-example
+ * 
+ * {
+ *      "success": true,
+ *      "error": false,
+ *      "message": "URL updated",
+ *      "data": {
+ *        "url": {
+ *           "_id": "6f8b44b749c80311234883b2",
+ *           "originalURL": "https://github.com/adisakshya",
+ *           "shortURL": "http://<domain>/adi",
+ *           "URLCode": "github",
+ *           "createdAt": "2020-03-24T16:41:20.489Z",
+ *           "updatedAt": "2020-03-24T16:41:20.489Z",
+ *           "__v": 0
+ *         }
+ *       }
+ * }
  */
 const updateURLCode = async (req, res) => {
   
@@ -450,9 +659,36 @@ const updateURLCode = async (req, res) => {
 };
 
 /**
- * DELETE item by ID
- * @param {object} req
- * @param {object} res
+ * @api {delete} /api/v1/url/item delete shorten URL entry
+ * @apiVersion 1.0.0
+ * @apiName delete shorten URL entry
+ * @apiGroup admin
+ * 
+ * @apiParam {String} id Shorten URL Entry ID
+ * 
+ * @apiParamExample {String} request-example
+ * 
+ * curl --request DELETE http://<domain:port>/api/v1/url/item \
+ *  --data-urlencode 'id=5e7a33a638b79200123772a1' \
+ * 
+ * @apiParamExample {json} response-example
+ * 
+ * {
+ *      "success": true,
+ *      "error": false,
+ *      "message": "URL deleted",
+ *      "data": {
+ *        "url": {
+ *           "_id": "5e7a33a638b79200123772a1",
+ *           "originalURL": "https://www.google.co.in",
+ *           "shortURL": "http://<domain>/google",
+ *           "URLCode": "google",
+ *           "createdAt": "2020-03-24T16:21:58.953Z",
+ *           "updatedAt": "2020-03-24T16:21:58.953Z",
+ *           "__v": 0
+ *         }
+ *       }
+ * }
  */
 const deleteByID = async (req, res) => {
   
@@ -506,9 +742,29 @@ const deleteByID = async (req, res) => {
 };
 
 /**
- * DELETE all items
- * @param {object} req
- * @param {object} res
+ * @api {delete} /api/v1/url/item delete all shorten URL entries
+ * @apiVersion 1.0.0
+ * @apiName delete all shorten URL entries
+ * @apiGroup admin
+ * 
+ * @apiParamExample {String} request-example
+ * 
+ * curl --request DELETE http://<domain:port>/api/v1/url
+ * 
+ * @apiParamExample {json} response-example
+ * 
+ * {
+ *      "success": true,
+ *      "error": false,
+ *      "message": "URL deleted",
+ *      "data": {
+  *        "url": {
+  *           "n": 1,
+  *           "ok": 1,
+  *           "deletedCount": 1
+ *         }
+ *       }
+ * }
  */
 const deleteAll = async (req, res) => {
   
