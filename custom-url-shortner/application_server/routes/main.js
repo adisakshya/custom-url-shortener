@@ -11,7 +11,7 @@ const mainController = require('../controllers/main/controller');
  */
 router.route('/:code')
   /**
-   * GET item by ID
+   * Redirect to original URL
    */
   .get(mainController.redirectToOriginalURL)
 

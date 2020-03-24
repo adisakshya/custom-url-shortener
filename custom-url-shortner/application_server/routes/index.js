@@ -11,9 +11,9 @@ const applicationController = require('../controllers/application/controller');
  */
 router.route('/')
   /**
-   * GET item by ID
+   * GET all items
    */
-  .get(applicationController.getByID)
+  .get(applicationController.getAllItems)
   
   /**
    * POST new item 
@@ -21,48 +21,67 @@ router.route('/')
   .post(applicationController.createNewItem)
 
   /**
+   * DELETE all items
+   */
+  .delete(applicationController.deleteAll);
+
+/**
+ * Item Route
+ */
+router.route('/item')
+  /**
+   * GET item by ID
+   */
+  .get(applicationController.getByID)
+
+  /**
    * DELETE item by ID
    */
   .delete(applicationController.deleteByID);
 
 /**
- * All Route
+ * Item (original URL) Route
  */
-router.route('/all')
+router.route('/item/originalurl')
   /**
-   * GET all items
+   * GET item by originalURL
    */
-  .get(applicationController.getAllItems)
-
-  /**
-   * DELETE all items
-   */
-  .delete(applicationController.deleteAll);
-
+  .get(applicationController.getByOriginalURL);
 
 /**
- * Database Test Route
+ * Item (URL Code) Route
  */
-router.route('/db/connection/test')
+router.route('/item/urlcode')
   /**
-   * GET database connection status
+   * GET item by URLCode
    */
-  .get(applicationController.checkDBConnection);
+  .get(applicationController.getByCode);
 
 /**
- * Database Test Route
+ * Update OriginalURL Route
  */
-router.route('/update/originalURL')
+router.route('/update/originalurl')
   /**
-   * GET database connection status
+   * UPDATE originalURL
    */
   .put(applicationController.updateOriginalURL);
 
-
-router.route('/update/URLCode')
+/**
+ * Update URLCode Route
+ */
+router.route('/update/urlcode')
   /**
-   * GET database connection status
+   * UPDATE URLCode
    */
   .put(applicationController.updateURLCode);
+
+/**
+ * Database Connection Test Route
+ */
+router.route('/db/connection/test')
+  /**
+   * CHECK connection with database
+   */
+  .get(applicationController.checkDBConnection);
 
 module.exports = router;
