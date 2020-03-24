@@ -11,8 +11,7 @@ A custom URL shortner service built using ExpressJS, MongoDB & Nginx.
 #### Prerequisites
 
 - Make sure you have
-  - MongoDB Atlas cluster up and running with a user having database access.
-  - Docker or NodeJS installed
+  - Docker installed
 
 #### Fork
 
@@ -24,24 +23,6 @@ A custom URL shortner service built using ExpressJS, MongoDB & Nginx.
 - That's it your almost done, now in the repository root, run the following command
 ```$ cd custom-url-shortner/```, this will take you to project directory.
 
-#### Run using Node
-
-- Install dependencies using the node package manager (npm).
-	- In application-server-directory ```./custom-url-shortner/application_server```, run the following command
-		- ```npm install```
-- You are all set to get started with custom-url-shortner, now run the following command to start custom-url-shortner
-	- ```npm start --host 0.0.0.0``` or just simple ```npm start```
-- Now you have successfully setup custom-url-shortner application shortner,
-	- Please find the postman-collection for application server at ```./custom-url-shortner/application_server/postman_collection```.
-  - It describe all routes that define the operation the application server.
-- Activate nginx by using the conf file at ```./custom-url-shortner/nginx```.
-- To start the webserver run the following command from ```./custom-url-shortner/web_server```
-  - ```npm start --host 0.0.0.0``` or just simple ```npm start```
-- Now to access the webserver visit ```http://<your-ip-address>:5000```
-- After creating a new shortend-URL you can access it on following route
-  - ```http://<your-ip-address>/<UNIQUE_URL_CODE>```
-  - This will take you to the original URL.
-
 #### Using Docker
 
 - Make sure you have docker installed before proceeding.
@@ -50,10 +31,8 @@ A custom URL shortner service built using ExpressJS, MongoDB & Nginx.
     - Running docker-compose in detached mode
 - As soon as the build completes you are all set to get started with custom-url-shortner.
 - Now you have successfully setup custom-url-shortner,
-	- Please find the postman-collection for application server at ```./custom-url-shortner/application_server/postman_collection```.
+	- Please find the api-documentation for application server [here](https://www.adisakshya.co/custom-url-shortner/).
   - It describe all routes that define the operation the application server.
-- To access the webserver visit
-  - ```http://<docker-machine-ip>:5000```
 - To access shortened URL visit
   - ```http://<docker-machine-ip>:/<UNIQUE_URL_CODE>```
 
