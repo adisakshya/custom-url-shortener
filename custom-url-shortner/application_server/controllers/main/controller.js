@@ -30,7 +30,10 @@ const redirectToOriginalURL = async (req, res) => {
     return res
       .status(404)
       .json({
-        "message": 'No such URL code found'
+        "success": false,
+        "error": true,
+        "message": "No such URL code found",
+        "data": null
       })
   }
 };

@@ -28,14 +28,20 @@ const checkDBConnection = async (req, res) => {
     return res
       .status(504)
       .json({
-        "message": "Failed to establish connection with database"
+        "success": false,
+        "error": true,
+        "message": "Failed to establish connection with database",
+        "data": null
       });
   } else {
     // if yes then return Status 200 OK
     return res
       .status(200)
       .json({
-        "message": "Connection with database is successfully established"
+        "success": true,
+        "error": false,
+        "message": "Connection with database is successfully established",
+        "data": null
       });
   }
 }
@@ -55,7 +61,10 @@ const createNewItem = async (req, res) => {
     return res
       .status(400)
       .json({
-        'message': 'Insufficient parameters'
+        "success": false,
+        "error": true,
+        "message": "Insufficient parameters",
+        "data": null
       })
   }
 
@@ -64,14 +73,20 @@ const createNewItem = async (req, res) => {
     return res
       .status(400)
       .json({
-        'message': 'Invalid Base URL'
+        "success": false,
+        "error": true,
+        "message": "Invalid Base URL",
+        "data": null
       });
   }
   if(!validURL.isUri(originalURL)) {
     return res
       .status(400)
       .json({
-        'message': 'Invalid Original URL'
+        "success": false,
+        "error": true,
+        "message": "Invalid Original URL",
+        "data": null
       });
   }
 
@@ -82,8 +97,13 @@ const createNewItem = async (req, res) => {
     return res
       .status(200)
       .json({
-        'message': url,
-        'duplicate': 'URL Code'
+        "success": true,
+        "error": false,
+        "message": "URL code already exists",
+        "data": {
+          "url": url,
+          "duplicate": "URL Code"
+        }
       });
   }
 
@@ -94,8 +114,13 @@ const createNewItem = async (req, res) => {
     return res
       .status(200)
       .json({
-        'message': item,
-        'duplicate': 'Original URL'
+        "success": true,
+        "error": false,
+        "message": "Original URL already exists",
+        "data": {
+          "url": item,
+          "duplicate": "URL Code"
+        }
       });
   } else {
     // Create a short URL
@@ -112,13 +137,21 @@ const createNewItem = async (req, res) => {
       return res
         .status(200)
         .json({
-          'message': item
+          "success": true,
+          "error": false,
+          "message": "New shorten url entry created",
+          "data": {
+            "url": item,
+          }
         })
     } else {
       return res
         .status(500)
         .json({
-          'message': 'Something went wrong'
+          "success": false,
+          "error": true,
+          'message': 'Something went wrong',
+          "data": null
         })
     }
   }
@@ -140,13 +173,21 @@ const getAllItems = async (req, res) => {
     return res
       .status(200)
       .json({
-        "message": items
+        "success": true,
+        "error": false,
+        'message': "",
+        "data": {
+          "items": items
+        }
       });
   } else {
     return res
-      .status(200)
+      .status(404)
       .json({
-        "message": 'No Items found'
+        "success": false,
+        "error": true,
+        "message": 'No Items found',
+        "data": null
       });
   }
 };
@@ -166,7 +207,10 @@ const getByID = async (req, res) => {
     return res
       .status(400)
       .json({
-        'message': 'Insufficient parameters'
+        "success": false,
+        "error": true,
+        'message': 'Insufficient parameters',
+        "data": null
       })
   }
 
@@ -178,13 +222,21 @@ const getByID = async (req, res) => {
     return res
       .status(200)
       .json({
-        "message": item
+        "success": true,
+        "error": false,
+        'message': "URL ID found",
+        "data": {
+          "url": item
+        }
       });
   } else {
     return res
       .status(404)
       .json({
-        "message": 'No such URL ID found'
+        "success": false,
+        "error": true,
+        "message": "No such URL ID found",
+        "data": null
       })
   }
 };
@@ -204,7 +256,10 @@ const getByCode = async (req, res) => {
     return res
       .status(400)
       .json({
-        'message': 'Insufficient parameters'
+        "success": false,
+        "error": true,
+        "message": "Insufficient parameters",
+        "data": null
       })
   }
 
@@ -216,13 +271,21 @@ const getByCode = async (req, res) => {
     return res
       .status(200)
       .json({
-        "message": item
+        "success": true,
+        "error": false,
+        'message': "URL Code found",
+        "data": {
+          "url": item
+        }
       });
   } else {
     return res
       .status(404)
       .json({
-        "message": 'No such URL code found'
+        "success": false,
+        "error": true,
+        "message": "No such URL code found",
+        "data": null
       })
   }
 };
@@ -242,7 +305,10 @@ const getByOriginalURL = async (req, res) => {
     return res
       .status(400)
       .json({
-        'message': 'Insufficient parameters'
+        "success": false,
+        "error": true,
+        "message": "Insufficient parameters",
+        "data": null
       })
   }
 
@@ -254,13 +320,21 @@ const getByOriginalURL = async (req, res) => {
     return res
       .status(200)
       .json({
-        "message": item
+        "success": true,
+        "error": false,
+        'message': "Original URL found",
+        "data": {
+          "url": item
+        }
       });
   } else {
     return res
       .status(404)
       .json({
-        "message": 'No such URL found'
+        "success": false,
+        "error": true,
+        "message": "No such URL found",
+        "data": null
       })
   }
 };
@@ -280,7 +354,10 @@ const updateOriginalURL = async (req, res) => {
     return res
       .status(400)
       .json({
-        'message': 'Insufficient parameters'
+        "success": false,
+        "error": true,
+        "message": "Insufficient parameters",
+        "data": null
       })
   }
 
@@ -298,13 +375,21 @@ const updateOriginalURL = async (req, res) => {
     return res
       .status(200)
       .json({
-        "message": item
+        "success": true,
+        "error": false,
+        'message': "URL updated",
+        "data": {
+          "url": item
+        }
       });
   } else {
     return res
       .status(404)
       .json({
-        "message": 'No such URL found'
+        "success": false,
+        "error": true,
+        "message": "No such URL found",
+        "data": null
       })
   }
 };
@@ -324,7 +409,10 @@ const updateURLCode = async (req, res) => {
     return res
       .status(400)
       .json({
-        'message': 'Insufficient parameters'
+        "success": false,
+        "error": true,
+        "message": "Insufficient parameters",
+        "data": null
       })
   }
 
@@ -342,13 +430,21 @@ const updateURLCode = async (req, res) => {
     return res
       .status(200)
       .json({
-        "message": item
+        "success": true,
+        "error": false,
+        'message': "URL updated",
+        "data": {
+          "url": item
+        }
       });
   } else {
     return res
       .status(404)
       .json({
-        "message": 'No such URL found'
+        "success": false,
+        "error": true,
+        "message": "No such URL found",
+        "data": null
       })
   }
 };
@@ -368,7 +464,10 @@ const deleteByID = async (req, res) => {
     return res
       .status(400)
       .json({
-        'message': 'Insufficient parameters'
+        "success": false,
+        "error": true,
+        "message": "Insufficient parameters",
+        "data": null
       })
   }
 
@@ -387,13 +486,21 @@ const deleteByID = async (req, res) => {
     return res
       .status(200)
       .json({
-        "message": removedItem
+        "success": true,
+        "error": false,
+        'message': "URL deleted",
+        "data": {
+          "url": item
+        }
       });
   } else {
     return res
       .status(404)
       .json({
-        "message": 'No such URL found'
+        "success": false,
+        "error": true,
+        "message": "No such URL found",
+        "data": null
       });
   }
 };
@@ -413,7 +520,10 @@ const deleteAll = async (req, res) => {
     return res
       .status(200)
       .json({
-        "message": 'No items found'
+        "success": false,
+        "error": true,
+        "message": "Insufficient parameters",
+        "data": null
       });
   }
 
@@ -425,13 +535,21 @@ const deleteAll = async (req, res) => {
     return res
       .status(200)
       .json({
-        "message": resp
+        "success": true,
+        "error": false,
+        'message': "URL deleted",
+        "data": {
+          "url": resp
+        }
       });
   } else {
     return res
       .status(500)
       .json({
-        "message": 'Something went wrong'
+        "success": false,
+        "error": true,
+        "message": "Something went wrong",
+        "data": null
       });
   }
 };
