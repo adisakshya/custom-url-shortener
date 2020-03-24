@@ -79,6 +79,44 @@ const getByID = async (req, res) => {
 };
 
 /**
+ * GET item by Code
+ * @param {object} req
+ * @param {object} res
+ */
+const getByCode = async (req, res) => {
+  
+  // GET params
+  const code = req.query.code;
+
+  // CHECK if all parameters are given
+  if(!code) {
+    return res
+      .status(400)
+      .json({
+        'message': 'Insufficient parameters'
+      })
+  }
+
+  // GET item
+  const item = await dbController.getItemByCode(code);
+  
+  // RETURN response
+  if(item) {
+    return res
+      .status(200)
+      .json({
+        "message": item
+      });
+  } else {
+    return res
+      .status(404)
+      .json({
+        "message": 'No such URL code found'
+      })
+  }
+};
+
+/**
  * POST new item
  * @param {object} req 
  * @param {object} res 
@@ -139,7 +177,7 @@ const createNewItem = async (req, res) => {
     // create a short URL
     let shortURL = baseURL + "/" + URLCode;
     
-    // insert into db
+    // Insert into db
     const item = await dbController.insertNewItem(originalURL, baseURL, shortURL, URLCode);
     // Insert item in cache
     const cacheItem = await cache.set(URLCode, originalURL);
@@ -181,15 +219,21 @@ const deleteByID = async (req, res) => {
       })
   }
 
-  // GET item
-  const item = await dbController.deleteItemByID(id);
+  // GET url code
+  const item = await dbController.getItemByID(id);
+  let itemCode = item.URLCode;
+
+  // Delete item
+  const removedItem = await dbController.deleteItemByID(id);
+  // Remove from cache
+  const removedCache = await cache.deleteKey(itemCode);
   
   // RETURN response
-  if(item) {
+  if(removedItem) {
     return res
       .status(200)
       .json({
-        "message": item
+        "message": removedItem
       });
   } else {
     return res
@@ -209,6 +253,8 @@ const deleteAll = async (req, res) => {
   
   // GET item
   const resp = await dbController.deleteAllItems();
+  // Clear cache
+  const temp = await cache.deleteAll();
   
   // RETURN response
   if(resp) {
@@ -227,7 +273,7 @@ const deleteAll = async (req, res) => {
 };
 
 /**
- * 
+ * Get all items
  * @param {object} req
  * @param {object} res
  */
