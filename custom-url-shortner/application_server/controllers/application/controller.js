@@ -146,7 +146,7 @@ const getAllItems = async (req, res) => {
     return res
       .status(200)
       .json({
-        "message": 'No Item found'
+        "message": 'No Items found'
       });
   }
 };
@@ -393,7 +393,7 @@ const deleteByID = async (req, res) => {
     return res
       .status(404)
       .json({
-        "message": 'Item not found'
+        "message": 'No such URL found'
       });
   }
 };
@@ -408,6 +408,15 @@ const deleteAll = async (req, res) => {
   // Get item
   const resp = await dbController.deleteAllItems();
   
+  // Check if no items were present
+  if(!resp.deletedCount) {
+    return res
+      .status(200)
+      .json({
+        "message": 'No items found'
+      });
+  }
+
   if(resp) {
     // Clear cache
     const temp = await cache.deleteAll();
@@ -420,9 +429,9 @@ const deleteAll = async (req, res) => {
       });
   } else {
     return res
-      .status(404)
+      .status(500)
       .json({
-        "message": 'No item found'
+        "message": 'Something went wrong'
       });
   }
 };
