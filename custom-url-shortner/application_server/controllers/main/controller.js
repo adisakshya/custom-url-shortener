@@ -9,17 +9,24 @@
 const cache = require('../../lib/cache');
 
 /**
- * Redirect to original URL
- * @param {object} req
- * @param {object} res
+ * @api {get} / redirect to original URL corresponding to shorten URL
+ * @apiVersion 1.0.0
+ * @apiName redirect to original URL corresponding to shorten URL
+ * @apiGroup all
+ * 
+ * @apiParam {String} URLCode URLCode corresponding to shorten URL
+ * 
+ * @apiParamExample {String} request-example
+ * 
+ * curl --request GET http://<domain:port>/:URLCode
  */
 const redirectToOriginalURL = async (req, res) => {
   
   // GET params
-  const code = req.params.code;
+  const URLcode = req.params.URLcode;
 
   // GET originalURL from cache
-  const originalURL = await cache.get(code);
+  const originalURL = await cache.get(URLcode);
   
   if(originalURL) {
     // Redirect to original URL
