@@ -378,11 +378,12 @@ const deleteByID = async (req, res) => {
 
   // Delete item
   const removedItem = await dbController.deleteItemByID(id);
-  // Remove from cache
-  const removedCache = await cache.deleteKey(itemCode);
   
-  // Return response
   if(removedItem) {
+    // Remove from cache
+    const removedCache = await cache.deleteKey(itemCode);
+    
+    // Return response
     return res
       .status(200)
       .json({
@@ -406,11 +407,12 @@ const deleteAll = async (req, res) => {
   
   // Get item
   const resp = await dbController.deleteAllItems();
-  // Clear cache
-  const temp = await cache.deleteAll();
   
-  // Return response
   if(resp) {
+    // Clear cache
+    const temp = await cache.deleteAll();
+    
+    // Return response
     return res
       .status(200)
       .json({
