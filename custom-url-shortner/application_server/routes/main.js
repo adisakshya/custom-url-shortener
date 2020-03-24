@@ -9,7 +9,7 @@ const mainController = require('../controllers/main/controller');
 /**
  * Index Route
  */
-router.route('/:URLCode')
+router.route('/:code')
   /**
    * Redirect to original URL
    */
