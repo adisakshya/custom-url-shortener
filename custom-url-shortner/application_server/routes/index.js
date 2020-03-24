@@ -60,7 +60,7 @@ router.route('/item/urlcode')
 /**
  * Update OriginalURL Route
  */
-router.route('/update/originalurl')
+router.route('/item/update/originalurl')
   /**
    * UPDATE originalURL
    */
@@ -69,7 +69,7 @@ router.route('/update/originalurl')
 /**
  * Update URLCode Route
  */
-router.route('/update/urlcode')
+router.route('/item/update/urlcode')
   /**
    * UPDATE URLCode
    */

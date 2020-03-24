@@ -491,7 +491,7 @@ const getByOriginalURL = async (req, res) => {
 };
 
 /**
- * @api {put} /api/v1/url/update/originalurl update original URL corresponding to shorten URL
+ * @api {put} /api/v1/url/item/update/originalurl update original URL corresponding to shorten URL
  * @apiVersion 1.0.0
  * @apiName update original URL corresponding to shorten URL
  * @apiGroup item
@@ -501,7 +501,7 @@ const getByOriginalURL = async (req, res) => {
  * 
  * @apiParamExample {String} request-example
  * 
- * curl --request PUT http://<domain:port>/api/v1/url/update/originalurl \
+ * curl --request PUT http://<domain:port>/api/v1/url/item/update/originalurl \
  *  --data-urlencode 'id=6f8b44b749c80311234883b2' \
  *  --data-urlencode 'originalURL=https://github.com'
  * 
@@ -575,7 +575,7 @@ const updateOriginalURL = async (req, res) => {
 };
 
 /**
- * @api {put} /api/v1/url/update/urlcode update urlcode corresponding to shorten URL
+ * @api {put} /api/v1/url/item/update/urlcode update urlcode corresponding to shorten URL
  * @apiVersion 1.0.0
  * @apiName update urlcode corresponding to shorten URL
  * @apiGroup item
@@ -585,7 +585,7 @@ const updateOriginalURL = async (req, res) => {
  * 
  * @apiParamExample {String} request-example
  * 
- * curl --request PUT http://<domain:port>/api/v1/url/update/urlcode \
+ * curl --request PUT http://<domain:port>/api/v1/url/item/update/urlcode \
  *  --data-urlencode 'id=6f8b44b749c80311234883b2' \
  *  --data-urlencode 'URLCode=github'
  * 
