@@ -5,7 +5,7 @@ if(process.env.NODE_ENV === 'test') {
     shortenURL = require('./testModel');
 } else {
     console.log('>', 'Model Loaded');
-    shortenURL = require('./testModel');
+    shortenURL = require('./shortenURL');
 }
 
 module.exports = shortenURL;
