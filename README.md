@@ -1,6 +1,6 @@
 # Custom URL Shortener
 
-[![](https://img.shields.io/badge/docs%20-view%20API%20Documentation-blue.svg?style=for-the-badge&logo=appveyor)](https://www.adisakshya.co/custom-url-shortener/) [![version](https://img.shields.io/badge/Version-1.0.0-blue.svg?style=for-the-badge&logo=appveyor)](https://github.com/adisakshya/custom-url-shortener) [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-blue.svg?style=for-the-badge&logo=appveyor)](https://github.com/adisakshya/custom-url-shortener/pulls) [![Under Development](https://img.shields.io/badge/Under%20Development-Yes-blue.svg?style=for-the-badge&logo=appveyor)](https://www.adisakshya.co/custom-url-shortener/) [![Open Source](https://img.shields.io/badge/Open%20Source-Love-red.svg?style=for-the-badge&logo=appveyor)]()
+[![](https://img.shields.io/badge/docs%20-view%20API%20Documentation-blue.svg?style=for-the-badge&logo=appveyor)](https://adisakshya.github.io/custom-url-shortener/) [![version](https://img.shields.io/badge/Version-1.0.0-blue.svg?style=for-the-badge&logo=appveyor)](https://github.com/adisakshya/custom-url-shortener) [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-blue.svg?style=for-the-badge&logo=appveyor)](https://github.com/adisakshya/custom-url-shortener/pulls)
 
 A custom URL shortner service built using ExpressJS, MongoDB & Nginx.
 
